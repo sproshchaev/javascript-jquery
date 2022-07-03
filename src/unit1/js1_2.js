@@ -1,0 +1,1 @@
+console.log("Hello from script (js1_2.js)");
