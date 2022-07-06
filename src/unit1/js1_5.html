@@ -1,24 +1,43 @@
 <!-- Практика 5 "Условия" -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JS - Unit 1</title>
 </head>
+
 <body>
+    <h1>Using the CASE statement</h1>
     <script>
-        x = +prompt("Input x=");
-        var str = "";
-        switch(x){
-        case 1: str += "1";
-        case 2: str += "2";
-        case 3: str += "3";
-        case 4: str += "4";
-        default: str += "5";
+        let numberDayWeek = Number(prompt("Enter the day of the week=", 100));
+        let nameDayWeek = "";
+        switch (numberDayWeek) {
+            case 1: nameDayWeek = "Monday";
+            break;
+            case 2: nameDayWeek = "Tuesday";
+            break;
+            case 3: nameDayWeek = "Wednes­day";
+            break;
+            case 4: nameDayWeek = "Thursday";
+            break;
+            case 5: nameDayWeek = "Friday";
+            break;
+            case 6: nameDayWeek = "Saturday";
+            break;
+            case 7: nameDayWeek = "Sunday";
+            break;
+            default: nameDayWeek = "Not defined!";
         }
-        alert(str);
-        </script>
+        if (nameDayWeek != "Not defined!") {
+            alert(nameDayWeek)
+        } else { 
+            alert("Enter again!") 
+        };
+
+    </script>
 </body>
+
 </html>
