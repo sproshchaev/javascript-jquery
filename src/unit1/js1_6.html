@@ -1,0 +1,21 @@
+<!-- Практика 6 "Циклы" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let sumNumbers = 0;
+        maxNumber = Number(prompt("Enter the maximum number", "0"));  
+        while (maxNumber > 0) {
+            sumNumbers = sumNumbers + maxNumber;     
+            maxNumber = maxNumber - 1;
+        }
+        alert("The sum of all natural numbers=" + sumNumbers);
+    </script>
+</body>
+</html>
