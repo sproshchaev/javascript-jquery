@@ -1,0 +1,23 @@
+<!-- Практика 6-5 "Циклы (Использование continue в цикле for)" 
+     Задача: Запросить у пользователя число N. 
+     Получить сумму всех нечетных чисел от 0 до N: ​0 + 1 + 2 + … + N ​-->
+     <!DOCTYPE html>
+     <html lang="en">
+     <head>
+         <meta charset="UTF-8">
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Document</title>
+     </head>
+     <body>
+         <script>
+             let sumNumbers = 0;
+             let maxNumber = Number(prompt("Enter the maximum number", "0"));  
+             for (var i = 0; i <= maxNumber; i = i + 1) {
+                 if ((i % 2) == 0) continue;   // Если значение переменной чётное, то переходим к следующей итерации 
+                 sumNumbers = sumNumbers + i;
+             }
+             alert("The sum of all natural numbers=" + sumNumbers);
+         </script>
+     </body>
+     </html>
