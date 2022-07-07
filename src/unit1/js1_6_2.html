@@ -1,0 +1,25 @@
+<!-- Практика 6-2 "Циклы Do while" 
+     Задача: Запросить у пользователя число N. 
+     Получить сумму всех чисел от 0 до N: ​0 + 1 + 2 + … + N ​-->
+     <!DOCTYPE html>
+     <html lang="en">
+     <head>
+         <meta charset="UTF-8">
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Document</title>
+     </head>
+     <body>
+         <script>
+             let sumNumbers = 0;
+             let maxNumber = Number(prompt("Enter the maximum number", "0"));  
+             if (maxNumber > 0) {
+               do {
+                  sumNumbers = sumNumbers + maxNumber;     
+                   maxNumber = maxNumber - 1;
+               } while (maxNumber > 0);
+            }  
+             alert("The sum of all natural numbers=" + sumNumbers);
+         </script>
+     </body>
+     </html>

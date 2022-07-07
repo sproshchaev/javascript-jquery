@@ -1,4 +1,6 @@
-<!-- Практика 6 "Циклы" -->
+<!-- Практика 6-1 "Циклы (While)" 
+     Задача: Запросить у пользователя число N. 
+     Получить сумму всех чисел от 0 до N: ​0 + 1 + 2 + … + N ​-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +12,7 @@
 <body>
     <script>
         let sumNumbers = 0;
-        maxNumber = Number(prompt("Enter the maximum number", "0"));  
+        let maxNumber = Number(prompt("Enter the maximum number", "0"));  
         while (maxNumber > 0) {
             sumNumbers = sumNumbers + maxNumber;     
             maxNumber = maxNumber - 1;
