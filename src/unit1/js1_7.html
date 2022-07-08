@@ -1,4 +1,5 @@
-<!-- Практика 7 "Функции" ​-->
+<!-- Практика 7 "Функции" 
+     Задача:  Вывести на html-странице 5 заголовков <h2> Header ... </h2> ​​-->
      <!DOCTYPE html>
      <html lang="en">
      <head>
@@ -9,6 +10,12 @@
      </head>
      <body>
          <script>
+            function show5Blocks() {
+                for(i = 1; i <= 5; i++) {
+                    document.write("<h2> Header " + i + "</h2>");
+                }
+            }
+            show5Blocks();
          </script>
      </body>
      </html>
