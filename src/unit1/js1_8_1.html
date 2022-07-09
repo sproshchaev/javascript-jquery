@@ -1,0 +1,28 @@
+<!-- Практика 8-1 "Параметры функции" 
+     Задача: создать функцию, которая будет увеличивать значение аргумента на 1 
+     и выводить полученный результат на страницу​ ​​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="VarXbefore"></p>
+    <p id="ResultIncAndLog"></p>
+    <p id="VarXafter"></p>
+    <script>
+      // Описание функции incAndLog(x)
+      function incAndLog(x) {
+        x = x + 1;
+        ResultIncAndLog.innerHTML = "x = x + 1";
+      }
+      let x = 2; // Инициализируем переменную
+      VarXbefore.innerHTML = "Before X=" + x;
+      incAndLog(x);  // Вызываем функцию и передаем ей значение переменной
+      VarXafter.innerHTML = "After X=" + x;
+    </script>
+  </body>
+</html>
