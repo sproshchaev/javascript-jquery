@@ -1,0 +1,30 @@
+<!-- Практика 9 "Параметры функции" 
+     Задача: создать функцию с несколькими параметрами и вывести все параметры на html-странице​​ ​​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 1</title>
+  </head>
+  <body>
+    <p id="Length"></p>
+    <p id="VarX1"></p>
+    <p id="VarX2"></p>
+    <p id="VarX3"></p>
+    <script>
+      // Описание функции argToPrint()
+      function argToPrint(x1, x2, x3) {
+        Length.innerHTML = "length=" + arguments.length;
+        VarX1.innerHTML = "x1=" + arguments[0];
+        VarX2.innerHTML = "x2=" + arguments[1];
+        VarX3.innerHTML = "x3=" + arguments[2];
+      }
+      let x1 = 1; // Инициализируем переменные
+      let x2 = 2; 
+      let x3 = 3; 
+      argToPrint(x1, x2, x3); // Вызываем функцию и передаем ей значение переменных
+    </script>
+  </body>
+</html>
