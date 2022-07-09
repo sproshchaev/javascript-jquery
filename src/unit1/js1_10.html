@@ -1,0 +1,36 @@
+<!-- Практика 9 "Параметры функции" 
+     создать функцию с одним аргументом, затем создать одноименную функцию 
+     с двумя аргументами и вывести значения и число аргументов на html-страницу​​​ ​​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 1</title>
+  </head>
+  <body>
+    <p id="Length"></p>
+    <p id="VarX1"></p>
+    <p id="VarX2"></p>
+    <script>
+      // Описание функции argToPrint() с одним аргументом
+      function argToPrint(x1) {
+        Length.innerHTML = "length=" + arguments.length;
+        VarX1.innerHTML = "x1=" + arguments[0];
+      }
+      // Описание функции argToPrint() с двумя аргументами
+      function argToPrint(x1, x2) {
+        Length.innerHTML = "length=" + arguments.length;
+        VarX1.innerHTML = "x1=" + arguments[0];
+        VarX2.innerHTML = "x2=" + arguments[1];
+      }
+      let x1 = 1; // Инициализируем переменные
+      let x2 = 2;
+      let x3 = 3;
+      // argToPrint(x1); // Вызываем функцию c одним параметром
+      argToPrint(x1, x2); // Вызываем функцию с двумя параметрами
+      // argToPrint(x1, x2, x3); // Вызываем функцию с тремя параметрами
+    </script>
+  </body>
+</html>
