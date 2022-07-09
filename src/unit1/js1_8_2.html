@@ -18,11 +18,11 @@
       function incAndLog(x) {
         x = x + 1;
         ResultIncAndLog.innerHTML = "x = x + 1";
+        return x;
       }
       let x = 2; // Инициализируем переменную
       VarXbefore.innerHTML = "Before X=" + x;
-      incAndLog(x);  // Вызываем функцию и передаем ей значение переменной
-      VarXafter.innerHTML = "After X=" + x;
+      VarXafter.innerHTML = "After X=" + incAndLog(x); // Вызываем функцию и передаем ей значение переменной
     </script>
   </body>
 </html>
