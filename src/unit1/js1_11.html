@@ -1,0 +1,32 @@
+<!-- Практика 11 "Области видимости переменных" 
+Продемонстрировать работу локальных ​и глобальных переменных var, let, const и области их видимости ​​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 1</title>
+  </head>
+  <body>
+    <p id="VarX1"></p>
+    <p id="VarX2"></p>
+    <p id="VarX3"></p>
+    <script>
+      var x1 = 3;
+      let x2 = 3;
+      const x3 = 3;
+      var x1 = 4; // Ошибки не возникает
+      // let x2 = 4; Ошибка: "Cannot redeclare block-scoped variable x2"
+      // const x3 = 4; Ошибка: "Cannot redeclare block-scoped variable x3"
+      function emptyFunction(x1) {
+        var x1 = 5;
+        let x2 = 5; // Нет ошибки: "Cannot redeclare block-scoped variable x2"
+        const x3 = 5; // Нет ошибки: "Cannot redeclare block-scoped variable x3"
+      }
+      VarX1.innerHTML = "x1=" + x1;
+      VarX2.innerHTML = "x2=" + x2;
+      VarX3.innerHTML = "x3=" + x3;
+    </script>
+  </body>
+</html>
