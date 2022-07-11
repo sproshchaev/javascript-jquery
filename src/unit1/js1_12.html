@@ -1,0 +1,27 @@
+<!-- Практика 12 "Рекурсия" 
+Реализовать функцию, рассчитывающую ​факториал заданного пользователем числа ​​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 1</title>
+  </head>
+  <body>
+    <script>
+      var num = +prompt("Enter a number:");
+      alert("factorial(" + num + ")=" + stringWithNumbers(num) + "=" + factorial(num));
+      // Функция реализует алгоритм расчета значения факториала числа
+      function factorial(number) {
+        if (number == 1) return 1;
+        return number * factorial(number - 1);
+      }
+      // Функция генерирует формулу расчета факториала числа
+      function stringWithNumbers(number) {
+        if (number == 1) return "1";
+        return stringWithNumbers(number - 1) + " x " + number;
+      }
+    </script>
+  </body>
+</html>
