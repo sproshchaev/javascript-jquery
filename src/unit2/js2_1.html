@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 2</title>
+  </head>
+  <body>
+    <p id="paragraph1"></p>
+    <p id="paragraph2"></p>
+    <script>
+      // Получим значения свойств
+      var author = prompt("1. Enter author:", "_author_");
+      var bookName = prompt("2. Enter title of the book:", "_name_");
+      var yearPublic = Number(prompt("3. Year of publication:", "2022"));
+      var numPages = Number(prompt("4. Number of pages:", "100"));
+
+      // Создадим Объект Книга и запишем в него значения свойств
+      var book = {
+        author: author,
+        bookName: bookName,
+        yearPublic: yearPublic,
+        numPages: numPages,
+      };
+      // Выведем на страницу все значения свойств Книги
+      paragraph1.innerHTML = "Book:";
+      for (var property in book) {
+        paragraph2.innerHTML =
+          paragraph2.innerHTML + " " + property + ": " + book[property];
+      }
+    </script>
+  </body>
+</html>
