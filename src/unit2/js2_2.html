@@ -1,0 +1,43 @@
+<!-- Практика 2 "Работа с объектами и их свойствами" 
+Создать массив из названий 12 месяцев ​и отсортировать месяцы по алфавиту от А до Я ​
+и в обратном порядке с Я до А​б, а так же месяца, начинающиеся на букву A ​-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS - Unit 2</title>
+</head>
+<body>
+    <p id="paragraph1" ></p>
+    <p id="paragraph2" ></p>
+    <p id="paragraph3" ></p>
+    <p id="paragraph4" ></p>
+    <script>
+
+        // Создаем строку
+        var strOfMonths = "January, February, March, April, May, June, July, August, September, October, November, December";
+
+        // Создаем массив из строки, используя метод .split() 
+        var monthsOfTheYear = strOfMonths.split(",");
+
+        // Выведем в первую строку html-страницы информацию о длине массиве и всех его элементах 
+        paragraph1.innerHTML = "Array (length=" + monthsOfTheYear.length + "): " + monthsOfTheYear;
+
+        // Вторая строка  - сортировка в алфавитном порядке с использованием метода .sort() 
+        paragraph2.innerHTML = "Array (.sort): " + monthsOfTheYear.sort();
+
+        // Создадим функцию сортировки элементов массива по убыванию: если первый элемент больше второго - возвращаем -1 
+        function sortedArrayDesc(item1, item2) {
+          if (item1 > item2) return -1;
+          if (item2 > item1) return 1;
+          if (item1 == item2) return 0;
+        }
+
+        // Третья строка  - сортировка в алфавитном порядке по убыванию
+        paragraph3.innerHTML = "Array (.sort(sortedArrayDesc)): " + monthsOfTheYear.sort(sortedArrayDesc);
+
+    </script>
+</body>
+</html>
