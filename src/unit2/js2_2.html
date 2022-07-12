@@ -36,7 +36,9 @@
         }
 
         // Третья строка  - сортировка в алфавитном порядке по убыванию c использованием метода .sort(sortedArrayDesc)
-        paragraph3.innerHTML = "Array (.sort(sortedArrayDesc)): " + monthsOfTheYear.sort(sortedArrayDesc);
+        // используя метод .join() создадим из массива строку с разделителями месяцев ";"
+        var sortedArrayDescStr = monthsOfTheYear.sort(sortedArrayDesc).join(";");
+        paragraph3.innerHTML = "Array (.sort(sortedArrayDesc)): " + sortedArrayDescStr;
 
     </script>
 </body>
