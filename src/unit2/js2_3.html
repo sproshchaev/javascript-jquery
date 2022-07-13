@@ -1,0 +1,48 @@
+<!-- Практика 3 "Работа со строками"
+Задача:  Из строки "Я из лесу вышел был ​сильный мороз" создать две строки,​
+содержащие все гласные и согласные ​буквы соответственно​ ​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 2</title>
+  </head>
+  <body>
+    <p id="paragraph1"></p>
+    <p id="paragraph2"></p>
+    <p id="paragraph3"></p>
+    <script>
+      const sourceStr = "Я из лесу вышел был ​сильный мороз";
+      // Создадим строки, содержащие гласные и согласные буквы русского алфавита
+      const vowelLettersStr = "ауоыэяюёие";
+      const consonantLettersStr =
+        "бвгджзйклмнпрстфхцчшщ";
+      // Создадим строки,  с гласными и согласными буквами в которые будем помещать результат
+      let resultVowelLettersStr = "";
+      let resultConsonantLettersStr = "";
+      // Создадим функцию, проверяющую наличие символа в строке
+      function characterInString(char, string) {
+        if (string.indexOf(char.toLowerCase()) != -1) {
+          return true;
+        } else {
+          return false;
+        } 
+      }
+      // Проверим все символы в исходной строке на гласные и согласные
+      for (let i = 0; i < sourceStr.length; i++) {
+        if (characterInString(sourceStr[i], vowelLettersStr)) {  
+          resultVowelLettersStr = resultVowelLettersStr + sourceStr[i].toUpperCase();
+        }   
+        if (characterInString(sourceStr[i], consonantLettersStr)) {
+          resultConsonantLettersStr = resultConsonantLettersStr + sourceStr[i].toUpperCase();
+        }
+      }
+      // Выведем результаты 
+      paragraph1.innerHTML = "Исходная строка: " + '"' + sourceStr + '":';
+      paragraph2.innerHTML = " - содержит " + resultVowelLettersStr.length + " гласных: " + resultVowelLettersStr;
+      paragraph3.innerHTML = " - содержит " + resultConsonantLettersStr.length + " согласных: " + resultConsonantLettersStr;
+    </script>
+  </body>
+</html>
