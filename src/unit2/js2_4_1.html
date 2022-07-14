@@ -18,7 +18,8 @@
         alert(string + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds());
       }
       // Вызываем функцию printToAlert с задержкой 3 сек, передаем ей параметр "Сейчас:" 
-      setTimeout(printToAlert, 3000, "Сейчас: ");
+      timeoutID = setTimeout(printToAlert, 3000, "Сейчас: ");      
+      // clearTimeout(timeoutID); // Если вызвать clearTimeout, то printToAlert не запустится
     </script>
   </body>
 </html>
