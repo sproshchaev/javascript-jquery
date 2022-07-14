@@ -1,0 +1,30 @@
+<!-- Практика 4-2 "Использование периодического вызова"
+Задача: Реализовать на странице обновляемое время ЧЧ:ММ:СС​ ​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 2</title>
+  </head>
+  <body>
+    <div id="current_time"></div>
+    <script>
+      // Функция выводит на html-странице текущее время ЧЧ:ММ:СС
+      function printTime() {
+        current_time.innerHTML = new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
+      }
+      // Каждую секунду вызываем функцию printTime()
+      intervalId = setInterval(printTime, 1000);
+      // Через 10 сек. запросим остановку вывода времени на странице через вызов stopTime
+      setTimeout(stopTime, 10000, intervalId);
+      // Функция stopTime вызывает диалог confirm 
+      function stopTime(interval) {
+        if (confirm("Остановить время?")) {
+          clearInterval(interval); // вызываем clearInterval, останавливаем printTime 
+        }
+      }
+    </script>
+  </body>
+</html>
