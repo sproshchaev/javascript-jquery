@@ -9,10 +9,10 @@
     <title>JS - Unit 2</title>
   </head>
   <body>
-    <div id="current_date_time"></div>
+    <div id="current_time"></div>
     <script>
       // При открытии html-страницы выводим текущее время ЧЧ:ММ:СС  
-      current_date_time.innerHTML = new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
+      current_time.innerHTML = new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
       // Функция выводит сообщение через alert "текст" + ЧЧ:ММ:СС   
       function printToAlert(string) {
         alert(string + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds());
