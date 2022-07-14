@@ -1,0 +1,24 @@
+<!-- Практика 4-1 "Использование задержек и периодического вызова функций"
+Задача: Вывести сообщение с задержкой в 3 сек. ​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 2</title>
+  </head>
+  <body>
+    <div id="current_date_time"></div>
+    <script>
+      // При открытии html-страницы выводим текущее время ЧЧ:ММ:СС  
+      current_date_time.innerHTML = new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
+      // Функция выводит сообщение через alert "текст" + ЧЧ:ММ:СС   
+      function printToAlert(string) {
+        alert(string + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds());
+      }
+      // Вызываем функцию printToAlert с задержкой 3 сек, передаем ей параметр "Сейчас:" 
+      setTimeout(printToAlert, 3000, "Сейчас: ");
+    </script>
+  </body>
+</html>
