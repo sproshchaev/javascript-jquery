@@ -1,0 +1,36 @@
+<!-- Практика 5 "Использование объекта Math"
+Задача: Создать функцию, генерирующую цифровой ​пароль длинной 8 знаков, при этом не было  ​
+двух одинаковых цифр подряд​ ​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 2</title>
+  </head>
+  <body>
+    <script>
+      var currentDigit = 0;
+      var previousDigit = 0;
+      var passwordString = "";
+      for (var i = 0; i < 8; i++) {
+        // В цикле do while сравниваем текущий и предидущие символы пароля
+        do {
+          // Генерируем очередной символ пароля
+          currentDigit = Math.floor(Math.random() * 10);
+          // Предидущий символ пароля - берем из строки passwordString если это не первый символ
+          previousDigit = i >= 1 ? Number(passwordString.charAt(i - 1)) : 0;
+          /* Тернарный оператор "условие ? выражение1 : выражение2 " аналогичен if-else
+          if (i >= 1) {
+            previousDigit = Number(passwordString.charAt(i - 1));
+          } else {
+            previousDigit = 0;
+          } */
+        } while (currentDigit == previousDigit);
+        passwordString = passwordString + currentDigit;
+      }
+      alert(passwordString);
+    </script>
+  </body>
+</html>
