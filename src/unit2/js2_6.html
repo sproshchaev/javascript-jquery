@@ -18,8 +18,7 @@
       var userMonth = String(new Date().getMonth() + 1); // Месяц "07" - для 15.07.2022 getMonth()=06 (0-янв, 1-фев,...,11-дек)
       var userYear = String(new Date().getFullYear());   // Год "2022"
       // Через prompt() запросили строку формата даты "01.01.2022" (new Date работает и с ".")
-      var userDateStr = prompt("Введите дату: ", new Date(userYear + "-" 
-        + userMonth + "-" + userDay).toLocaleDateString());
+      var userDateStr = prompt("Введите дату: ", new Date(userYear + "-" + userMonth + "-" + userDay).toLocaleDateString());
       // Вносим новые значения в переменные userDay, userMonth, userYear (на случай если пользователь в prompt ввел новые значения)
       userDay = userDateStr.substr(0, 2);
       userMonth = userDateStr.substr(3, 2);
