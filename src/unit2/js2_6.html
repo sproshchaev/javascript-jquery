@@ -1,0 +1,49 @@
+<!-- Практика 5 "Работа с датами"
+Задача: Сделать функцию, возвращающая число ​рабочих дней (понедельник - пятница) в месяце, 
+дату которого введет пользователь ​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 2</title>
+  </head>
+  <body>
+    <script>
+      // Кол-во миллисекунд в сутках: 1 000 мс * 60 секунд * 60 минут * 24 часа = 86 400 000 мс
+      const millisecondsInDay = 86400000;
+      // Объявляем строковые переменные для генерации "Даты" из текущей даты "new Date()"
+      var userDay = String(new Date().getDate());        // Число "15"
+      var userMonth = String(new Date().getMonth() + 1); // Месяц "07" - для 15.07.2022 getMonth()=06 (0-янв, 1-фев,...,11-дек)
+      var userYear = String(new Date().getFullYear());   // Год "2022"
+      // Через prompt() запросили строку формата даты "01.01.2022" (new Date работает и с ".")
+      var userDateStr = prompt("Введите дату: ", new Date(userYear + "-" 
+        + userMonth + "-" + userDay).toLocaleDateString());
+      // Вносим новые значения в переменные userDay, userMonth, userYear (на случай если пользователь в prompt ввел новые значения)
+      userDay = userDateStr.substr(0, 2);
+      userMonth = userDateStr.substr(3, 2);
+      userYear = userDateStr.substr(6, 4);
+      // Записываем в переменную дата начала месяца startDate новый экземпляр, получаемый из строковых переменных "01", userMonth, userYear
+      var startDateMonth = new Date(userYear + "-" + userMonth + "-01");
+      // Определим первого числа следующего месяца "01.08.2022"
+      var userMonth2 = Number(userMonth) + 1 > 12 ? "01" : String(Number(userMonth) + 1); // Месяц "07" + 1;
+      var userYear2 = Number(userMonth) + 1 > 12 ? String(Number(userYear) + 1) : userYear; // Год "2022";
+      var startDateNextMonth = new Date(userYear2 + "-" + userMonth2 + "-01");
+      // Определим дату последнего дня текущего месяца = первое_число_след_мес ("01.08.2022") минус 1 сутки (millisecondsInDay)
+      var endtDateMonth = new Date(startDateNextMonth.getTime() - millisecondsInDay);
+      // Выполняем расчет числа рабочих дней между startDateMonth и endtDateMonth
+      var workingDays = 0;
+      var currentDay = startDateMonth;
+      while (currentDay <= endtDateMonth) {
+        // .getDay() — возвращает день недели: 0-вскр, 1-пнд, 2-вт, 3-ср, 4-чтв, 5-птн, 6-сб
+        if ((currentDay.getDay() != 0) & (currentDay.getDay() != 6)) {
+          workingDays++;
+        }
+        currentDay = new Date(currentDay.getTime() + millisecondsInDay);
+      }
+      // Вывод сообщения с результатом расчета
+      alert("Число рабочих дней с " + startDateMonth.toLocaleDateString() + " по " + endtDateMonth.toLocaleDateString() + ": " + workingDays);
+    </script>
+  </body>
+</html>
