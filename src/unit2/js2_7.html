@@ -1,0 +1,41 @@
+<!-- Практика 7 "Использование классов"
+Задача: Создать класс автомобиль ​со свойствами марка, цвет, гос.номер.​
+Создать метод "перекрасить автомобиль ​в другой цвет" ​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 2</title>
+  </head>
+  <body>
+    <p id="paragraph1"></p>
+    <p id="paragraph2"></p>
+    <script>
+      // Класс Сar
+      class Car {
+        // Конструктор класса
+        constructor(brand, color, number) {
+          this.brand = brand; // свойство Марка
+          this.color = color; // свойство Цвет
+          this.number = number; // свойство Номер
+        }
+        // Метод setColor() устанавливает новый цвет машины
+        setColor(color) {
+          this.color = color;
+        }
+        // Метод toString() возвращает строку, содержащую все свойства объекта класса
+        toString() { return "Car: " + this.brand + " " + this.color + ", " + this.number; }
+      }
+      // Создание нового объекта
+      var bmw = new Car("BMW", "white", "Х 005 ЕО 750 rus");
+      paragraph1.innerHTML = bmw.toString();
+      if (confirm(bmw.toString() + " перекрасить в черный цвет?")) {
+        paragraph1.innerHTML = "Был: " + bmw.toString();
+        bmw.setColor("black");
+        paragraph2.innerHTML = "Стал: " + bmw.toString();
+      }
+    </script>
+  </body>
+</html>
