@@ -1,0 +1,49 @@
+<!-- Практика 8 "ООП. Инкапсуляция"
+Задача: Создать класс Геометрические фигуры с реализацией 
+геттеров и сеттеров ​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 2</title>
+  </head>
+  <body>
+    <p id="paragraph1"></p>
+    <p id="paragraph2"></p>
+    <script>
+      // Класс 
+      class GeometricalFigure {
+        // Свойства (переменные класса) - объявляем вне конструктора и помечаем #
+        #figureName  // Наименование фигуры
+        #figureСolor // Цвет фигуры
+        #figureArea  // Площадь фигуры
+        // Конструктор класса - в конструкторе мы определяем значения для #figureName, #figureСolor, #figureArea
+        constructor(name, color, area) {
+          this.#figureName = name; 
+          this.#figureСolor = color; 
+          this.#figureArea = area; 
+        }
+        // Геттеры - функции, возвращающие наименование, цвет, площадь фигуры 
+        get figureName() { return this.#figureName; }
+        get figureСolor() { return this.#figureСolor; }
+        get figureArea() { return this.#figureArea; }
+        // Сеттеры - функции, записывающие значения из вне в свойства (переменные) класса
+        set figureName(name) { this.#figureName = name; }
+        set figureСolor(color) { this.#figureСolor = color; }
+        set figureArea(area) { this.#figureArea = area; }
+      }
+      // Создание нового объекта
+      var triangle = new GeometricalFigure("Треугольник", "белый", 100);
+      paragraph1.innerHTML = "Фигура: " + triangle.figureName + ", цвет " + triangle.figureСolor;
+      if (confirm("Перекрасить " + triangle.figureName +  " в черный цвет?")) {
+        // Мы не вызываем метод get figureСolor() - мы получаем значение из переменной figureСolor
+        paragraph1.innerHTML = "Был: " + triangle.figureСolor;
+        // Мы не вызываем метод set figureСolor() - мы присваивания значение figureСolor 
+        triangle.figureСolor = "черный";
+        paragraph2.innerHTML = "Стал: " + triangle.figureСolor;
+      }
+    </script>
+  </body>
+</html>
