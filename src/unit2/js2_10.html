@@ -1,0 +1,35 @@
+<!-- Практика 10 "ООП. Полиморфизм"
+Задача: Создать объект класса Dog от класса ​
+Animals и переопределить для него ​метод speak()​ ​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 2</title>
+  </head>
+  <body>
+    <script>
+      // Родительскиий класс Animals (животные)  
+      class Animals {
+        speak() { alert("Животное как-то говорит...") }
+      }
+      // Дочерний класс 
+      class Dog extends Animals {
+        _dogName // Используем второй вариант "_" для инкапсуляции свойства (первый #)
+        constructor(dogName) { 
+          super(); // Вызываем конструктор родительского класса  
+          this._dogName = dogName;
+        }
+        get _dogName() { return this._dogName; }
+        // Переопределение метода - если убрать переопределение, то будет вызван speak() из Animals
+        speak() { alert(this._dogName + ": Гав-гав!"); } // 
+      }
+      // Создание новой морской черепахи
+      var myDog = new Dog("Шарик");
+      alert("Моя собака " + myDog._dogName + ". Это класс Dog? - " + (myDog instanceof Dog));
+      myDog.speak();
+    </script>
+  </body>
+</html>
