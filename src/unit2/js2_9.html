@@ -1,0 +1,45 @@
+<!-- Практика 9 "ООП. Наследование"
+Задача: Создать класс Черепахи на основе класса ​Животные​ ​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 2</title>
+  </head>
+  <body>
+    <script>
+      // Родительскиий класс Animals (животные)  
+      class Animals {
+        // Свойства (переменные класса) - объявляем вне конструктора и помечаем #
+        #biologicalSpecies // Биологический вид: млекопитающие, пресмыкающихся, земноводные, рыбы и т.п. 
+        // Конструктор класса - в конструкторе мы определяем значения для #biologicalSpecies
+        constructor(biologicalSpecies) { this.#biologicalSpecies = biologicalSpecies; }
+        // Геттеры - функции, возвращающие биологический вид животного 
+        get biologicalSpecies() { return this.#biologicalSpecies; }
+        // Методы - есть и пить
+        eat() { alert(this.#biologicalSpecies + " ест!") }
+        drink() { alert(this.#biologicalSpecies + " пьет!") }
+      }
+      // Дочерний класс (черепахи) расширяет рожительский класс Animals (животные)
+      class Turtle extends Animals {
+        #turtleName // Степная черепаха, морская черепаха, подземная черепаха
+        constructor(biologicalSpecies, turtleName) { 
+          super(biologicalSpecies); // Вызываем конструктор класса Animals 
+          this.#turtleName = turtleName;
+        }
+        // Геттеры - функции, возвращающие биологический вид животного
+        get turtleName() { return this.#turtleName; }
+        // Методы
+        swim() { alert(this.#turtleName + " плавает!"); }
+      }
+      // Создание новой морской черепахи
+      var seaTurtle = new Turtle("Земноводное животное", "Морская черепаха");
+      seaTurtle.swim(); // Вызываем метод класса Turtle
+      seaTurtle.eat(); // Вызываем метод класса Animals
+      seaTurtle.drink();
+      alert(seaTurtle.biologicalSpecies); // Обращаемся к свойству родительского класса
+    </script>
+  </body>
+</html>
