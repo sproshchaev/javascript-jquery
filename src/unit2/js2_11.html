@@ -1,0 +1,42 @@
+<!-- Практика 11 "ООП. Абстракция"
+Задача: Создать абстрактный класс Animal и​ унаследовать от него дочерний класс Cat,​
+переопределить методы абстрактного класса​ ​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 2</title>
+  </head>
+  <body>
+    <script>
+      // Абстрактный класс
+      class Animal {
+        // Конструктор, который запрещает создавать объекты данного класса
+        constructor() {
+          if (this.constructor == Animal) {
+            throw new Error("Abstract classes can't be instantiated!");
+          }
+        }
+        // Метод, который необходимо переопределить в классе - наследнике
+        say() {
+          throw new Error("Method 'say()' must be implemented.");
+        }
+        // Метод, который можно использовать в классе-наследнике
+        eat() {
+          alert("eating");
+        }
+      }
+      // var animal = new Animal(); <- нельзя содлать объект абстрактного класса, получим исключение
+      class Cat extends Animal {
+        say() {
+            alert("Meow!") // Мяу! - Переопределяем метод абстрактного класса
+        } 
+      }
+      var myCat = new Cat(); // Создаем объект дочернего класса Cat, наследника абстрактного класса Animal
+      myCat.eat(); // Вызываем методы абстрактного класса
+      myCat.say();
+    </script>
+  </body>
+</html>
