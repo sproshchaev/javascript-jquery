@@ -1,0 +1,30 @@
+<!-- Практика 2 "Обработка событий в сценариях"
+Задача: Реализовать на практике три варианта ​обработки событий: как HTML-атрибут, ​
+как метод в скриптовой части, ​с использованием метода «addEvent-Listener»​ ​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 3</title>
+    <!-- Стилевые атрибуты блока (div): ширина, высота и фоновый цвет -->
+    <style>
+      div {
+        background: navy;
+        height: 50px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Блоку (div) присваивается идентификатор id="clickableDiv" -->
+    <div id="clickableDiv"></div>
+    <script>
+      // Обработчик события «clickableDiv.onclick» указывается в скриптовой части  
+      clickableDiv.onclick = function () {
+        alert("DIV have been clicked");
+      };
+    </script>
+  </body>
+</html>
