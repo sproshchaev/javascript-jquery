@@ -1,0 +1,35 @@
+<!-- Объект event и его свойства​​ 
+     Автоматическая передача функции-обработчика объекта event (сокращенно e) в качестве аргумента -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 3</title>
+    <!-- Стилевые атрибуты блока (div): ширина, высота и фоновый цвет -->
+    <style>
+      div {
+        background: navy;
+        height: 50px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <!--  -->
+  <body>
+    <!-- Блоку (div) присваивается идентификатор id="clickableDiv" -->
+    <div id="clickableDiv"></div>
+    <script>
+      // Обработчик события «clickableDiv.onclick» указывается в скриптовой части,
+      // Объект «event» автоматически связывается с параметром функции-обработчика, то есть служит ее аргументом
+      clickableDiv.onclick = function (e) {
+        alert(
+          "screen=" + e.screenX + ", " + e.screenY +
+            " client=" + e.clientX + ", " + e.clientY +
+            " page=" + e.pageX + ", " + e.pageY
+        );
+      };
+    </script>
+  </body>
+</html>

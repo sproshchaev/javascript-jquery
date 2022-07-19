@@ -1,0 +1,30 @@
+<!-- Объект event и его свойства​​ 
+     Использование объекта event и его свойств. 
+     Вывод в консоль всех свойств объекта event​-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 3</title>
+    <!-- Стилевые атрибуты блока (div): ширина, высота и фоновый цвет -->
+    <style>
+      div {
+        background: navy;
+        height: 50px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <!-- Обработчик события «onclick» определен в теге «body». Это позволяет
+       перехватывать все события, относящиеся к данному документу. 
+       В теле обработчика формируется сообщения из текста к которому добавляется
+       имя целевого объекта события «event.target.nodeName» -->
+  <body
+    onclick="out.innerText = 'Click detected over: ' + event.target.nodeName;
+             console.log(event)">
+    <div></div>
+    <p id="out"></p>
+  </body>
+</html>
