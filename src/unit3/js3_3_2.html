@@ -1,0 +1,26 @@
+<!-- Управление стилями элементов web-страницы -->
+<!DOCTYPE html />
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>JS - Unit 3</title>
+    <style>
+      div {
+        background: navy;
+        height: 255px;
+        width: 255px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="colorBlock"></div> <!-- блок изначально синего цвета -->
+    <script>
+      // Обработка события через addEventListener, изменяющего backgroundColor    
+      colorBlock.addEventListener("click", function () {
+        colorBlock.style.backgroundColor =
+          "rgb(" + Math.round(255 * Math.random()) + "," + Math.round(255 * Math.random()) 
+            + "," + Math.round(255 * Math.random()) + ")";
+      });
+    </script>
+  </body>
+</html>

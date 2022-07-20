@@ -1,0 +1,31 @@
+<!-- Управление стилями элементов web-страницы -->
+<!DOCTYPE html />
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>JS - Unit 3</title>
+    <style>
+      body {
+        position: relative; /* Определение «position:absolute» - использование абсолютных ​координаты элемента​ */
+        height: 2000px; /* Высота для тела */
+        margin:0; /* Внешний отступ (margin) тела документа (body) */
+      }
+      div {
+        background: navy;
+        height: 50px;
+        width: 100px;
+        position: absolute; /* Использование абсолютных ​координат элемента */
+      }
+    </style>
+  </head>
+  <body onclick="moveStranger(event)">
+    <div id="stranger"></div> <!-- В теле документа присутствует блок с идентификатором «stranger» -->
+    <script>
+      // Функция принимает объект (e)vent из которого получает координаты блока  
+      function moveStranger(e) {
+        stranger.style.left = e.pageX + "px"; // К текущему значению координаты блока прибавляем px 
+        stranger.style.top = e.pageY + "px";  // один px – это 1 пиксель на экране 
+      }
+    </script>
+  </body>
+</html>

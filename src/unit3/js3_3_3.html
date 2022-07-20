@@ -1,0 +1,29 @@
+<!-- Управление стилями элементов web-страницы 
+  задание алгоритма формирования цвета: красный = 127, зеленый - координата X, 
+  синий - координата Y, изменение цвета задавать перемещением мыши без клика​ -->
+<!DOCTYPE html />
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>JS - Unit 3</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      div {
+        background: navy;
+        height: 255px;
+        width: 255px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="colorBlock"></div>
+    <script>
+      // Задание у блока обработчика события "mousemove"  
+      colorBlock.addEventListener("mousemove", function (e) {
+        colorBlock.style.backgroundColor = "rgb(127," + e.pageX + "," + e.pageY + ")";
+      });
+    </script>
+  </body>
+</html>
