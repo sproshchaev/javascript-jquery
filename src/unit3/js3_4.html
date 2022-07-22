@@ -22,24 +22,30 @@
   </head>
   <body>
     <h1>Mouse enter / Mouse over</h1>
+    <!-- Главный блок d1 -->
     <div id="d1">
-      <div id="d2"></div>
+      <div id="d2"></div> <!-- Блок d2 вложен в блок d1 -->
     </div>
-    <p>Mouse enter <span id="s1"></span></p>
+    <!-- Текстовые параграфы для вывода информации о событиях со строковыми контейнерами <span> -->
+    <p>Mouse enter <span id="s1"></span></p> 
     <p>Mouse over <span id="s2"></span></p>
     <script>
+      // Обработчик события "onmouseenter" для d1 
       d1.onmouseenter = function () {
         s1.innerText = "d1";
         console.log("d1.onmouseenter");
       };
+      // Обработчик события "onmouseover" для d1
       d1.onmouseover = function () {
         s2.innerText = "d1";
         console.log("d1.onmouseover");
       };
+      // Обработчик события "onmouseenter" для d2 
       d2.onmouseenter = function () {
         s1.innerText = "d2";
         console.log("d2.onmouseenter");
       };
+      // Обработчик события "onmouseover" для d2
       d2.onmouseover = function () {
         s2.innerText = "d2";
         console.log("d2.onmouseover");
