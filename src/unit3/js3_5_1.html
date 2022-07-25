@@ -1,0 +1,81 @@
+<!-- Изговая задача: выстрел из пушки ядром в мишень с клавишей Space -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 3</title>
+    <style>
+      body {
+        margin: 0;
+        position: relative;
+      }
+      #gun,
+      #bullet,
+      #aim {
+        position: absolute;
+      }
+      #bullet,
+      #aim {
+        border-radius: 50%;
+      }
+      #gun {
+        background: navy;
+        height: 20px;
+        left: 0;
+        top: 50px;
+        width: 50px;
+      }
+      /* Блок «bullet» (снаряд), изначально размещен за блоком-пушкой («gun») */
+      #bullet {
+        background: khaki;
+        height: 20px;
+        left: 30px; /* Координаты «left» и «top» подобраны так, чтобы он располагался возле правого конца пушки */
+        top: 50px;
+        width: 20px;
+        z-index: -1; /* Атрибут перемещает блок «bullet» на задний план (скрывает за пушкой и за мишенью */
+      }
+      #aim {
+        background: red;
+        height: 30px;
+        left: 200px;
+        top: 45px;
+        width: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Press space</h1>
+    <div id="gun"></div>
+    <div id="bullet"></div>
+    <div id="aim"></div>
+    <body onkeypress="keyHandler(event)"></body>
+    <script>
+      // Создадим переменные и функцию, отвечающие за движение снаряда
+      var bulletX = 30; // переменная, отвечающая за координату «х» снаряда. Значение 30 соответствует стилевому атрибуту «left» блока «bullet»
+      var onFly = false; // переменная «onFly» - для обеспечения перезапуска функции moveBullet()
+      // Функция «moveBullet» отвечает за перемещение снаряда
+      function moveBullet() {
+        if (onFly) {
+          bulletX += 5; // Координата «bulletX» увеличивается на 5 единиц
+          // выполняется проверка на то, что снаряд достиг мишени т.е. координата x >= 200
+          if (bulletX >= 200) {
+            bulletX = 30; // если снаряд достиг мишени, его координата устанавливается в исходное состояние bulletX= 30 (за пушкой)
+            onFly = false; // режим полета прекращается изменением значения переменной
+          } else {
+            setTimeout(moveBullet, 50); // если снаряд не достиг мишени - планируется отложенный запуск функции «moveBullet» через 50 мс
+          }
+          bullet.style.left = bulletX + "px";
+        }
+      }
+      // Функция проверяет тот факт, что нажатая клавиша соответствует пробелу
+      function keyHandler(e) {
+        if (e.code == "Space" && !onFly) {
+          onFly = true;
+          moveBullet();
+        }
+      }
+    </script>
+  </body>
+</html>
