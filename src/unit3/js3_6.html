@@ -1,0 +1,26 @@
+<!-- ​События жизненного цикла​ веб страницы -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 3</title>
+    <style>
+      img {
+        height: auto;
+        width: 200px;
+      }
+    </style>
+  </head>
+  <!-- Первый обработчик событий жизненного цикла веб страницы DOMContentLoaded реализован через атрибут «onload» в теле документа -->
+  <body onload="alert('body loaded')">
+    <img src="Google.png" />
+    <script>
+      // Второй обработчик событий жизненного цикла веб страницы DOMContentLoaded реализован через метода addEventListener 
+      document.addEventListener("DOMContentLoaded", function () {
+        alert("DOM loaded");
+      });
+    </script>
+  </body>
+</html>
