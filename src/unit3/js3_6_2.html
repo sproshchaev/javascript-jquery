@@ -1,0 +1,38 @@
+<!-- ​События жизненного цикла​ веб страницы 
+Задача: Реализовать на веб-странице загрузку​ изображения в разных потоках​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 3</title>
+    <style>
+      img {
+        height: auto;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- В теле документа расположены два изображения "Google.png" (существует) и "Google2.png" (файла нет) 
+        В каждом из изображений установлены по два обработчика событий «load» и «error»-->
+    <img
+      src="Google.png"
+      onload="addMessage('Google.png load OK')"
+      onerror="addMessage('Google.png load error')"
+    />
+    <img
+      src="Google2.png"
+      onload="addMessage('Google2.png load OK')"
+      onerror="addMessage('Google2.png load error')"
+    />
+    <p id="txt"></p>
+    <script>
+      // Обработчики вызывают функцию addMessage, которая выводит передаваемое в качестве аргумента сообщение  
+      function addMessage(msg) {
+        window.txt.innerHTML += msg + "<br/>";
+      }
+    </script>
+  </body>
+</html>
