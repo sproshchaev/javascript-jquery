@@ -3,13 +3,37 @@
 синий, если средняя (или колесо), красный — если правая​ -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS - Unit 3</title>
-</head>
-<body>
-    
-</body>
+    <style>
+      #d1 {
+        border: 2px solid gray;
+        height: 200px;
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="d1"></div>
+    <script>
+      window.d1.onmousedown = function (e) {
+        var bgColor;
+        switch (e.which) {
+          case 1:
+            bgColor = "lime";
+            break;
+          case 2:
+            bgColor = "aqua";
+            break;
+          case 3:
+            bgColor = "tomato";
+            break;
+        }
+        window.d1.style.backgroundColor = bgColor;
+      };
+    </script>
+  </body>
 </html>
