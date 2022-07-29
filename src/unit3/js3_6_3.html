@@ -2,13 +2,36 @@
 Задача: ​ -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS - Unit 3</title>
-</head>
-<body>
-    
-</body>
+    <!-- Определение стилей, устанавливающие размеры текстового блока textarea -->
+    <style>  
+      #text {
+        height: 200px;
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- В теле документа расположен текстовый блок textarea -->
+    <textarea id="text"></textarea><br />
+    <!-- Cсылка на внешний ресурс -->
+    <a href="http://google.com">Google</a>
+    <script>
+      // Обработчик события - должен вернуть сообщение, если необходимо уведомить пользователя о несохраненных данных
+      // Для совместимости с разными браузерами необходимо: установить «e.returnValue=msg», вернуть «return msg»  
+      window.onbeforeunload = function (e) {
+        if (text.value.length > 0) {
+          var msg = "Text not saved";
+          e.returnValue = msg;
+          return msg;
+        }
+        // Если сообщение выводить не нужно (ввода в текстовом блоке text.value.length = 0), обработчик возвращает null
+        return null;
+      };
+    </script>
+  </body>
 </html>
