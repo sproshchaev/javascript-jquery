@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS - Unit 3</title>
+    <!-- При помощи стилей задаются размеры 200×200 пикселей и рамка, обеспечивающая видимость его границ для блока div -->
     <style>
       #d1 {
         border: 2px solid gray;
@@ -17,10 +18,13 @@
     </style>
   </head>
   <body>
+    <!-- В теле документа создается блок -->
     <div id="d1"></div>
     <script>
+      // Обработчик события onmousedown для установки фонового цвета блока через .backgroundColor  
       window.d1.onmousedown = function (e) {
         var bgColor;
+        // e.which - номер нажатой клавиши мыши
         switch (e.which) {
           case 1:
             bgColor = "lime";
@@ -34,6 +38,11 @@
         }
         window.d1.style.backgroundColor = bgColor;
       };
+      // Для блокировки обработчика события по умолчанию предназначенного для правой клавиши мыши
+      // Если его убрать, то будет активироваться контекстное меню
+      window.d1.oncontextmenu = function() { 
+        return false 
+      }
     </script>
   </body>
 </html>
