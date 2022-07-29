@@ -1,0 +1,48 @@
+<!-- Обработчики событий по умолчанию​ 
+Задача: Создать блок, который будет менять цвет при нажатии ​на нем клавиши мыши: зеленый, если нажата левая клавиша; ​
+синий, если средняя (или колесо), красный — если правая​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 3</title>
+    <!-- При помощи стилей задаются размеры 200×200 пикселей и рамка, обеспечивающая видимость его границ для блока div -->
+    <style>
+      #d1 {
+        border: 2px solid gray;
+        height: 200px;
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- В теле документа создается блок -->
+    <div id="d1"></div>
+    <script>
+      // Обработчик события onmousedown для установки фонового цвета блока через .backgroundColor  
+      window.d1.onmousedown = function (e) {
+        var bgColor;
+        // e.which - номер нажатой клавиши мыши
+        switch (e.which) {
+          case 1:
+            bgColor = "lime";
+            break;
+          case 2:
+            bgColor = "aqua";
+            break;
+          case 3:
+            bgColor = "tomato";
+            break;
+        }
+        window.d1.style.backgroundColor = bgColor;
+      };
+      // Для блокировки обработчика события по умолчанию предназначенного для правой клавиши мыши
+      // Если его убрать, то будет активироваться контекстное меню
+      window.d1.oncontextmenu = function() { 
+        return false 
+      }
+    </script>
+  </body>
+</html>
