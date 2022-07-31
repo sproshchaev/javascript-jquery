@@ -1,0 +1,28 @@
+<!-- Обработчики событий по умолчанию​ 
+Задача: создадим программу, выводящую на экран информацию о нажатой кнопке или их комбинации -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 3</title>
+  </head>
+  <body>
+    <!-- Заголовок  — подсказка, напоминающая о назначении программы -->
+    <h1>Click on page and press a key</h1>
+    <!-- Блок для вывода сообщений о нажатых кнопках -->
+    <h2 id="out"></h2>
+    <script>
+      // Обработчик события «onkeydown» в нем проверяются статусы нажатия кнопок «Ctrl», «Alt», «Shift»
+      document.body.onkeydown = function (e) {
+        var txt = "";
+        if (e.ctrlKey) txt += "Ctrl — ";
+        if (e.altKey) txt += "Alt — ";
+        if (e.shiftKey) txt += "Shift — ";
+        txt += e.key;
+        out.innerText = txt;
+      };
+    </script>
+  </body>
+</html>
