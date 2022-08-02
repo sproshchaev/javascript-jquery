@@ -1,0 +1,31 @@
+<!-- Работа с объектом window
+Задача: Программно открыть ссылку в новой вкладке​ и в новом окне, задать размеры и положение​ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS - Unit 4</title>
+</head>
+<body>
+    <script>
+        // Открытие страницы в новой вкладке через метод .open без возможности изменения размеров
+        newWindow1 = window.open("https://www.microsoft.com", "Вкладка Microsoft");
+
+        // Создание отдельного окна через метод .open. Аттрибут resizable в методе позволяет изменить размеры окна
+        // Задавать положение и размер окна необходимо при его создании - команду .resizeTo и .moveTo нужно передать 
+        // в одной инструкции, разделив их точкой с запятой. 
+        // После того как новое окно будет создано и управление вернется в консоль старого окна
+        newWindow2 = window.open("https://google.com", "Окно Google", "resizable");
+        newWindow2.resizeTo(500,500);
+        newWindow2.moveTo(50,50);
+
+        // Закрытие окна методом .close
+        if (newWindow2.confirm("Закрыть вкладку Microsoft?") == true) {
+            newWindow1.close();
+            alert("Вкладка Microsoft закрыта!");
+        }
+    </script>
+</body>
+</html>
