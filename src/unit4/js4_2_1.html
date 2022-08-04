@@ -1,0 +1,33 @@
+<!-- Работа с объектом window
+Задача: Программно открыть ссылку в новой вкладке​ и в новом окне, задать размеры и положение​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+  </head>
+  <body>
+    <!-- Создание двух кнопок «Back» и «Forward» -->
+    <button onclick="history.back()">Back</button>
+    <button onclick="history.forward()">Forward</button>
+    <script>
+      // 1) подменяется запись текущей страницы командой «replaceState»  
+      // Объект-состояние с одним полем «{‹record':'0'}», 
+      // Название страницы «page 0» - название используется только для журнала переходов 
+      // и не является заголовком страницы, не отображается на вкладке браузера 
+      // Адрес страницы, хранимый в журнале. В качестве адреса используем добавочные данные 
+      // с указанием условного номера страницы «?record=0». В журнале истории разрешаются 
+      // замены только на адрес того же домена, что и был в записи
+      window.history.replaceState({ record: "0" }, "page 0", "?record=0");
+      // 2) в журнал истории добавляются три новые записи вызовами метода «pushState»
+      window.history.pushState({ record: "1" }, "page 1", "?record=1");
+      window.history.pushState({ record: "2" }, "page 2", "?record=2");
+      window.history.pushState({ record: "3" }, "page 3", "?record=3");
+      // 3) вызывается метод «back()», который должен совершить переход на предыдущую страницу 
+      // из журнала истории данной вкладки
+      window.history.back();
+    </script>
+  </body>
+</html>
