@@ -1,0 +1,40 @@
+<!-- Коллекция Frames​
+Задача: Реализовать фреймы на веб-странице​​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+    <style>
+      iframe {
+        border: 1px solid navy;
+        height: 300px;
+        margin: 30px;
+        width: 300px;
+      }
+      button {
+        margin: 10px 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+    <!-- При загрузке страницы создаются три фрейма со специальной «пустой» страницей «src="about:blank"». 
+        Не рекомендуется создавать фреймы без указания источника (src=), так как они могут быть проигнорированы 
+        браузерами при загрузке страницы -->
+      <iframe src="about:blank"></iframe>
+      <iframe src="about:blank"></iframe>
+      <iframe src="about:blank" name="frame3"></iframe>
+      <iframe src="about:blank"></iframe>
+    </div>
+    <!-- При нажатии на кнопки происходит обращение к коллекции «window.frames». Поскольку элементы этой
+коллекции обладают всеми атрибутами окна, используем их объект «location» для переходов на нужный адрес -->
+    <button onclick="window.frames[0].location='https://itstep.org'">IT Step</button>
+    <button onclick="window.frames[1].location='https://mystat.itstep.org'">Mystat</button>
+    <button onclick="window.frames.frame3.location='https://quiz.itstep.org'">Quizes</button>
+    <!-- «Кросс-доменные ограничения»: Google не откроется в фрейме -->
+    <button onclick="window.frames[3].location='https://google.com'">Google</button>
+</body>
+</html>
