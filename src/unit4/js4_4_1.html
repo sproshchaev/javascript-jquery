@@ -1,0 +1,50 @@
+<!-- Представление HTML-документа в виде дерева​
+Задача: Cоздать HTML документ с DOM структурой​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    #d1 {
+      border: 2px solid navy;
+      height: 150px;
+      margin: 20px;
+      padding: 15px;
+      width: 400px;
+    }
+    #d2 {
+      border: 1px dashed navy;
+      float: right;
+      height: 140px;
+      overflow: auto;
+      padding: 5px;
+      width: 200px;
+    }
+  </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+  </head>
+  <body>
+    <!-- Основу страницы составляет блок div d1", в который вложены: блок div d2, заголовок <h1>, 
+        абзац <p>, в который вложен блок <span>, кнопка <button>, запускающая функцию getStructure() -->
+    <div id="d1">
+      <div id="d2"></div>
+      <h1>Header</h1>
+      <p>paragraph<br /><span>Span</span></p>
+      <button onclick="getStructure()">Get structure</button>
+    </div>
+    <script>
+      // В функции определяется коллекция дочерних элементов корневого элемента c  
+      function getStructure() {
+        var c = document.documentElement.childNodes;
+        var msg = "";
+        for (let i = 0; i < c.length; ++i) {
+          let d = c[i];
+          msg += + i + 1 + ". " + d.tagName + " (" + d.nodeName + ") <br>";
+        }
+        window.d2.innerHTML = msg; // По окончанию работы цикла сообщение выводится в блок d2
+      }
+    </script>
+  </body>
+</html>
