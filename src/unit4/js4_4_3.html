@@ -39,17 +39,37 @@
       function getStructure() {
         var c = document.documentElement.childNodes;
         var msg = "";
+        let num1 = 0;
         for (let i = 0; i < c.length; ++i) {
           let d = c[i];
-          msg += +i + 1 + ". " + d.tagName + " (" + d.nodeName + ")<br>";
+          if (d.nodeName.indexOf("text") == -1) {
+            num1++;
+            msg += num1 + ". " + d.tagName + " (" + d.nodeName + ")<br>";
+          }
           // Проверка - является ли данный узел составным объектом (имеет ли он дочерние элементы)
           if (d.hasChildNodes()) {
-            // Если узел составной объект - получаем его дочерние элементы в переменную е
+            // Проверяем второй уровень вложенности (если узел составной объект - получаем его дочерние элементы в переменную е)
             let e = d.childNodes;
-            // Обходим циклом эту коллекцию
+            let num2 = 0;
             for (let j = 0; j < e.length; ++j) {
-              let f = e[j];
-              msg += " &nbsp; " + (+j + 1) + ". " + f.tagName + " (" + f.nodeName + ")<br>";
+              var f = e[j];
+              if (f.nodeName.indexOf("text") == -1) {
+                num2++;
+                msg += " &nbsp; " + num2 + ". " + f.tagName + " (" + f.nodeName + ")<br>";
+              }
+              // Проверяем третий уровень вложенности
+              if (f.hasChildNodes()) {
+                let g = f.childNodes;
+                let num3 = 0;
+                for (let k = 0; k < g.length; k++) {
+                    var l = g[k];
+                    // Убираем текстовые элементы
+                    if (l.nodeName.indexOf("text") == -1) {
+                      num3++;
+                      msg += num3 + ") " + l.tagName + " (" + l.nodeName +  ")<br>"; 
+                    }
+                }
+              }
             }
           }
         }
