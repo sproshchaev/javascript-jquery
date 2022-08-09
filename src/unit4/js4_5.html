@@ -1,0 +1,49 @@
+<!-- Объекты модели DOM. Иерархия узлов​
+Задача: Создать код, позволяющий навигировать ​по узлам DOM от BODY элемента до li ​​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li>first element</li>
+      <li>
+        second element
+        <span>child Node 0</span>
+        <a>child node 1</a>
+        <p>child node 2</p>
+      </li>
+      <li>third element</li>
+    </ul>
+    <div id="d1"></div>
+    <div id="d2"></div>
+    <div id="d3"></div>
+    <script>
+      // Корневым элементом документа выступает объект «document.documentElement»
+      docElement = document.documentElement;
+      let str = "";
+      for (let i = 0; i < docElement.childNodes.length; i++) {
+        str = str + i + ") " + docElement.childNodes[i] + "<br>";
+      }
+      window.d1.innerHTML = "1. documentElement:<br>" + str;
+      // Его дочерними элементами являются заголовок (HEAD) и тело (BODY) документа, берем тело
+      body = docElement.childNodes[2];
+      let str2 = "";
+      for (let i = 0; i < body.childNodes.length; i++) {
+        str2 = str2 + i + ") " + body.childNodes[i] + "<br>";
+      }
+      window.d2.innerHTML = "2. body:<br>" + str2;
+      // Маркированный список ul является дочерним от body и содержит три элемента списка li 
+      ul = body.childNodes[1];
+      let str3 = "";
+      for (let i = 0; i < ul.childNodes.length; i++) {
+        str3 = str3 + i + ") " + ul.childNodes[i] + "<br>";
+      }
+      window.d3.innerHTML = "3. ul:<br>" + str3;
+    </script>
+  </body>
+</html>
