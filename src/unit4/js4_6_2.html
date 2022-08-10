@@ -1,0 +1,30 @@
+<!-- ​Модель событий DOM
+Задача: создать обработчик событий ​через метод «addEventListener»​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+    <style>
+      div {
+        background-color: tomato;
+        color: azure;
+        height: 23px;
+        padding-top: 3px;
+        text-align: center;
+        width: 75px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="btn">Press me</div>
+    <script>
+      // В разделе script добавлена инструкция btn.addEventListener 
+      btn.addEventListener("click", function () {
+        alert("Click event handled");
+      });
+    </script>
+  </body>
+</html>
