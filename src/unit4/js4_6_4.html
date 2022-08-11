@@ -1,0 +1,46 @@
+<!-- Модель событий DOM 
+Задача: Рассмотреть на примере эффекте всплытия ​событий​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+    <style>
+      #div1 {
+        background-color: tomato;
+        border: 1px solid red;
+        height: 100px;
+        width: 100px;
+      }
+      #div2 {
+        background-color: lime;
+        height: 60px;
+        width: 60px;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- На странице создаются два блока «div1» и «div2» с разным фоновым цветом. 
+        Блоки вложены один в другой. Внутреннему блоку заданы отступы для размещения по центру внешнего блока -->
+    <div id="div1"><div id="div2"></div></div>
+    <script>
+      // Обработчики события щелчка мышью «click» в которых формируется сообщение в консоль браузера
+      // Для получения объекта-события, указываем параметр для функции «function(e)».
+      div1.addEventListener("click", function (e) {
+        console.log("Click on div1");
+        e.stopPropagation(); // Для управления процессом всплытия у событий предназначен метод «stopPropagation».          
+                             // При его вызове прекращается всплытие и событие далее не передается
+      });
+      div2.addEventListener("click", function () {
+        console.log("Click on div2");
+      });
+      // Полностью аналогичный обработчик устанавливается и для корневого объекта «document»
+      document.addEventListener("click", function () {
+        console.log("Click on document");
+      });
+    </script>
+  </body>
+</html>
