@@ -1,0 +1,41 @@
+<!-- ​Модель событий DOM
+Задача: создать обработчик событий ​мыши -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+  </head>
+  <body>
+    X: <span id="coordX"></span><br />
+    Y: <span id="coordY"></span>
+    <script>
+      // Здесь реализован альтернативный способ определения обработчиков событий,
+      // созданный в отдельной секции - обработчики отвечают за движение мыши, нажатие и отпускание клавиш
+      // onmousemove, onmousedown определяется как функция с параметром «function(e)»
+      // Таким образом в обработчике движения мыши мы используем дополнительные данные о событии,
+      // а в обработчиках нажатия и отпускания кнопки — игнорируем их
+      document.onmousemove = function (e) {
+        coordX.innerHTML = e.pageX; // координаты указателя мыши на экране браузера
+        coordY.innerHTML = e.pageY;
+      };
+      // В событии мыши за номер клавиши отвечает поле «which»: 1 — левая, 2 — средняя (или колесо), 3 — правая клавиши
+      document.onmousedown = function (e) {
+        if (e.which == 1) {
+          coordX.style.fontSize = coordY.style.fontSize = "x-large";
+        }
+      };
+      //
+      document.onmouseup = function () {
+        coordX.style.fontSize = coordY.style.fontSize = "medium";
+      };
+      // Для того чтобы изменить поведение правой клавиши мыши необходимо вмешаться в еще одно событие
+      // — вызов контекстного меню «oncontextmenu»
+      document.oncontextmenu = function (e) {
+        e.preventDefault(); // - останавливает обработку события, установленную по умолчанию
+      };
+    </script>
+  </body>
+</html>
