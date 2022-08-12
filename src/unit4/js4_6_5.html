@@ -1,0 +1,68 @@
+<!-- Модель событий DOM 
+Задача: создать страницу, реализующую технологию ​«Drag-and-Drop» — перемещения элементов 
+​при помощи мыши​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+    <!-- Круглый вид перемещаемой фигуры достигается установкой стилевого атрибута «border-radius», 
+        который не влияет на исходные размеры блока (ширину и высоту), и блок все так же остается 
+        квадратным, только с закрашенной круглой областью -->
+    <style>
+      body {
+        position: relative;
+      }
+      #div1 {
+        background-color: tomato;
+        border: 1px solid red;
+        border-radius: 50%;
+        height: 100px;
+        width: 100px;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div1"></div>
+    <script>
+      // Объявление глобальной переменной «isDrag», видимой во всех функциях страницы
+      var isDrag = false; // начальное значение «false»
+      // Переменные для запоминания координат курсора мыши при первом нажатии кнопки мыши
+      var memoryPageX = 0;
+      var memoryPageY = 0;
+      // Переменные для запоминания координат курсора мыши при отпускании кнопки мыши
+      var memoryPageX2 = 0;
+      var memoryPageY2 = 0;
+      var firstMouseDown = true;
+      // Обработчик события нажатия кнопки — «mousedown»
+      div1.addEventListener("mousedown", function (e) {
+        isDrag = true;
+          memoryPageX = e.pageX - memoryPageX2; // запоминаем координаты нажатии кнопки мыши
+          memoryPageY = e.pageY - memoryPageY2;
+      });
+      // Обработчик события отпускания кнопки — «mouseup»
+      document.addEventListener("mouseup", function (e) {
+        isDrag = false;
+        // Запоминаем позицию курсора в момент отпускания клавиши мыши в переменныые memoryPageX2, memoryPageY2
+        memoryPageX2 = e.pageX - memoryPageX;
+        memoryPageY2 = e.pageY - memoryPageY;
+      });
+      // Обработчик события движения мыши — «mousemove»
+      document.addEventListener("mousemove", function (e) {
+        if (isDrag) {
+          // Cтилевым атрибутам блока «left» и «top» задаются значения согласно координатам курсора «e.pageX» и «e.pageY»,
+          // переданным через аргумент. Поскольку размер блока 100х100 пикселей, смещение на memoryPageX, memoryPageY
+          // пикселей по каждой координате позволяет исключить эффект рывка в начале движения, особенно если начальное положение
+          // курсора мыши далеко от центра круга, т.е. мы запоминаем точку отсчета — начальные координаты мыши при первом
+          // нажатии (в обработчике события «mousedown») и в дальнейшем при движении мыши вычитаем из ее координат запомненные
+          // значения первоначального сдвига memoryPageX, memoryPageY
+          div1.style.left = e.pageX - memoryPageX + "px"; // CSS требует, чтобы значениям атрибутов были c единицами измерения,
+          div1.style.top = e.pageY - memoryPageY + "px"; // поэтому добавляем "px"
+        }
+      });
+    </script>
+  </body>
+</html>
