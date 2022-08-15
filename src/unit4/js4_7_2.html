@@ -1,0 +1,52 @@
+<!-- Изменение дерева DOM​ 
+Задача: Создать функцию удаления 2-го элемента из дерева DOM​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+  </head>
+  <body>
+    <ul id="list">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+    </ul>
+    <button onclick="addItem()">Add item</button>
+    <button onclick="insertItem()">Insert item</button>
+    <!-- Третья кнопка для удаления элемента -->
+    <button onclick="removeItem()">Remove second item</button>
+    <script>
+      // 
+      function removeItem() {
+        var n = 0; // переменная 1 - счетчик строк
+        var element2 = false; // переменная 2 - элемент, отвечающий за вторую строку
+        // цикл «for-of» проходящий все элементы коллекции «list.childNodes»
+        for (var element of list.childNodes) {
+          // проверяем отвечает ли данный элемент коллекции за тег «<li>»  
+          if (element.tagName == "LI") n++; // имя хранится в верхнем регистре "LI", увеличиваем счетчик строк n++ 
+          // если счетчик строк равен 2, то данный элемент цикла является нашим искомым — второй строкой списка
+          if (n == 2) {
+            element2 = element;
+            break; // выходим из цикла
+          }
+        }
+        if (element2) list.removeChild(element2); // удаляем элемент
+      }
+      function addItem() {
+        var newItem = document.createElement("li");
+        newItem.innerText = "New item";
+        list.appendChild(newItem);
+      }
+      function insertItem() {
+        var firstItem = list.childNodes[0];
+        var newItem = document.createElement("li");
+        newItem.innerText = "New item";
+        list.insertBefore(newItem, firstItem);
+      }
+    </script>
+  </body>
+</html>
