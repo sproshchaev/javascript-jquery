@@ -1,0 +1,37 @@
+<!-- Изменение дерева DOM​ 
+Задача: Добавить новые элементы в дерево DOM​ двумя разными методами​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+  </head>
+  <body>
+    <!-- Основу страницы составляет маркированный список <ul id='list'> с четырьмя пунктами, названными Item 1-4 -->
+    <ul id="list">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+    </ul>
+    <!-- После списка расположены две кнопки для демонстрации двух различных способов добавления новых элементов -->
+    <button onclick="addItem()">Add item</button>
+    <button onclick="insertItem()">Insert item</button>
+    <script>
+      // 2 варианта добавления новых элементов - addItem(), insertItem()  
+      function addItem() {
+        var newItem = document.createElement("li"); // создается новый элемент с именем тега «li» и и помещается в переменную
+        newItem.innerText = "New item"; // для нового элемента устанавливается текст
+        list.appendChild(newItem); // новый элемент добавляется в коллекцию дочерних элементов списка
+      }
+      function insertItem() {
+        var firstItem = list.childNodes[0]; // определяется первый дочерний элемент списка путем обращения к коллекции дочерних элементов списка
+        var newItem = document.createElement("li"); 
+        newItem.innerText = "New item";
+        list.insertBefore(newItem, firstItem); // добавляющая новый элемент в начало списка помощи метода insertBefore
+      }
+    </script>
+  </body>
+</html>
