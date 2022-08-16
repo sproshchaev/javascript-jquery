@@ -1,0 +1,123 @@
+<!-- Изменение дерева DOM​ 
+Задача: Разработать список, в котором можно ​менять 
+порядок элементов при помощи ​технологии Drag-and-Drop 
+(пропустить пример) -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+    <style>
+      body {
+        position: relative;
+      }
+      .item,
+      .phantom {
+        height: 30px;
+        width: 300px;
+      }
+      .phantom {
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Основу HTML части составляет нумерованный список ol в котором создано четыре элемента, 
+        выделеные разными цветами -->
+    <ol id="list">
+      <li class="item" style="background-color: gold"></li>
+      <li class="item" style="background-color: red"></li>
+      <li class="item" style="background-color: green"></li>
+      <li class="item" style="background-color: blue"></li>
+    </ol>
+    <script>
+      // Глобальная переменная отвечает за реальный элемент списка, который будет перемещаться (активный элемент)
+      var draggedElement = false;
+      // Глобальная переменная ссылается на дополнительный элемент — копию активного элемента списка, 
+      // который будет следовать за указателем мыши 
+      var phantomElement = false;
+      // Для отделения кода JavaScript и разметки HTML обработчик события нажатия кнопки мыши реализован у объекта «document»
+      document.onmousedown = function (e) {
+        e.preventDefault(); // отмена стандартной обработки события нажатия кнопки мыши (чтобы наш код не конфликтовал 
+                            // со встроенными механизмами браузера, т.к. браузеры сами по себе могут поддерживать технологию Drag-and-Drop)
+        // Далее нам необходимо определить элемент списка, находящийся в точке под курсором мыши. Поскольку событие получает не сам элемент, 
+        // а документ, это необходимо сделать в два этапа:
+        // 1. Определяем элемент под курсором мыши и сохраняем его в переменной «clickedElement». 
+        // Используем стандартный метод «elementFromPoint» объекта «document»: var clickedElement = document.
+        var clickedElement = document.elementFromPoint(e.clientX, e.clientY);
+
+        // 2. Проверяем, является ли данный объект элементом списка, т.к. документ будет получать события и от совершенно других элементов. 
+        // Делаем это путем проверки наличия класса «item» у определенного объекта: 
+        if (clickedElement.className.indexOf("item") > -1) {
+          clickedElement.style.opacity = "0.5"; // если проверка проходит успешно, выделяем данный элемент, изменяя в два раза его прозрачность
+          draggedElement = clickedElement; // сохраняем данный элемент в глобальной переменной для обеспечения возможности доступу к нему
+                                           // из других функций, в частности, из обработчика событий движения мыши
+        }
+      };
+      // Функция обработчика движения мыши
+      document.onmousemove = function (e) {
+        // Все действия должны выполняться только в том случае, если происходит процесс перетягивания draggedElement == true
+        if (draggedElement) {
+          // Проверяем наличие элемента-копии (фантома), который следует за курсором мыши   
+          if (!phantomElement) {
+            phantomElement = document.createElement("div"); // если его нет (phantomElement == false) - то создаем через .createElement("div")
+            // После создания нового элемента устанавливаем для него такой же цвет, как у активного элемента в списке, чтобы дополнительно 
+            // информировать пользователя какой элемент перемещается
+            phantomElement.style.backgroundColor = draggedElement.style.backgroundColor;
+            // Далее устанавливаем координаты блока учитывая координаты курсора мыши
+            phantomElement.style.left = e.pageX - draggedElement.offsetWidth / 2 + "px";
+            phantomElement.style.top = e.pageY - draggedElement.offsetHeight / 2 + "px";
+            // Cтилевые атрибуты для блока-фантома задаются при помощи подключения стилевого класса «phantom».
+            phantomElement.className = "phantom";
+            // Добавляем блок к дочерним элементам тела документа
+            document.body.appendChild(phantomElement);
+          } else { // если фантомный элемент уже был создан ранее в предыдущих вызовах события:
+            // Для фантома устанавливаются новые координаты, согласно координатам курсора мыши, переданным в аргументе события
+            phantomElement.style.left = e.pageX - phantomElement.offsetWidth / 2 + "px";
+            phantomElement.style.top = e.pageY - phantomElement.offsetHeight / 2 + "px";
+            // Прячем фантомный элемент ниже списка, устанавливая отрицательное значение стилевого атрибута «z-index»:
+            phantomElement.style.zIndex = "-1";
+            // Определяется элемент списка, находящийся под курсором мыши
+            var lowerElement = document.elementFromPoint(e.clientX, e.clientY);
+            // Возвращаем фантомному элементу исходное значение атрибута «z-index» чтобы он и далее отображался поверх остальных элементов:
+            phantomElement.style.zIndex = "1";
+            // Комплексная проверка на то что элемент под курсором «lowerElement» существует, этот элемент относится к списку и не является активным для перетягивания будет реализована условием
+            if (lowerElement != null && lowerElement != draggedElement && lowerElement.className.indexOf("item") > -1) {
+              if (lowerElement == window.list.lastChild && e.pageY > lowerElement.offsetTop + lowerElement.offsetHeight / 2) {
+                window.list.removeChild(draggedElement);
+                appendChild(draggedElement);
+              } else {
+                // Для того чтобы нивелировать эффект дребезга добавим дополнительное условие — курсор мыши должен непросто перейти к соседнему элементу (превысив значение «lowerElement.offsetTop»), а пройти дальше, чем находится его центр по высоте («lowerElement.offsetHeight/2»).
+                if (e.pageY > lowerElement.offsetTop + lowerElement.offsetHeight / 2) {
+                  // Меняем местами «lowerElement» и «draggedElement»
+                  if (lowerElement.previousSibling == draggedElement) {
+                    window.list.removeChild(draggedElement);
+                    window.list.insertBefore(draggedElement, lowerElement.nextSibling);
+                  }
+                } else {
+                  window.list.removeChild(draggedElement);
+                  window.list.insertBefore(draggedElement, lowerElement);
+                }
+              }
+            }
+          }
+        }
+      };
+      // Обработчик события отпускания кнопки мыши
+      document.onmouseup = function (e) {
+        if (draggedElement) {
+          // При нажатии кнопки мыши мы уменьшали прозрачность элемента. Значит вернем ее в исходное значение  
+          draggedElement.style.opacity = "1";
+          draggedElement = false; // чтобы обработчик события движения мыши не выполнял команды по перемещению элементов списка
+        }
+        if (phantomElement) {
+          // Элемент «phantomElement», наоборот, создан в документе дополнительно, а значит по завершению перетягивания должен быть удален из тела документа  
+          document.body.removeChild(phantomElement);
+          phantomElement = false;
+        }
+      };
+    </script>
+  </body>
+</html>
