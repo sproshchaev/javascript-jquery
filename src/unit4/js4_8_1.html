@@ -1,0 +1,78 @@
+<!-- Поиск элементов
+Задача: Реализовать поиск элементов на ​
+
+html-странице​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+  </head>
+  <style>
+    div,
+    p {
+      border: 1px solid navy;
+      display: inline-block;
+      height: 60px;
+      margin: 10px;
+      padding-top: 40px;
+      text-align: center;
+      width: 100px;
+    }
+    .c1 {
+      background: #eee;
+    }
+    button {
+      margin-left: 25px;
+      margin-top: 30px;
+      width: 90px;
+    }
+  </style>
+  <body>
+    <!-- 5 блоков — три созданы тегом <div>, два — тегом <p> 
+    Для разных блоков указаны различные комбинации идентификаторов (id), классов (class) и имен (name). 
+    Для наглядности значения этих атрибутов продублированы в телах блоков и отображаются на странице внутри рамок блоков. 
+    Идентификаторы блоков (<div>) начинаются с буквы «d», абзацев (<p>) — с буквы «p» 
+    Для элементов, реализующих стилевой класс «с1», изначально указан серый цвет фона. Это позволяет убедиться в правильности подключения стилей -->
+    <div id="d1" class="c1" name="n1">d1, c1, n1</div>
+    <div id="d2" class="c2" name="n1">d2, c2, n1</div>
+    <div id="d3" class="c1 c2">d3, c1 c2</div>
+    <p id="p1" class="c1">p1, c1</p>
+    <p id="p2" class="c2" name="n1">p2, c2, n1</p>
+    <br />
+    <!-- 5 кнопок, реализующие различные методы поиска элементов -->
+    <button onclick="selD1()">id = d1</button>
+    <button onclick="selC1()">class = c1</button>
+    <button onclick="selP()">tag = P</button>
+    <button onclick="selN1()">name = n1</button>
+    <button onclick="clr()">Clear</button>
+  </body>
+  <script>
+    // 5 функций, отвечающие за нажатия кнопок, построены по схожему принципу:
+    // 1. Выполняется команда поиска 
+    // 2. Организовывается цикл по полученной коллекции 
+    // 3. В теле цикла для всех членов коллекции устанавливается фоновый цвет
+    function selD1() {
+      var elem = document.getElementById("d1");
+      elem.style.backgroundColor = "#cfc";
+    }
+    function selC1() {
+      var elems = document.getElementsByClassName("c1");
+      for (elem of elems) elem.style.backgroundColor = "#fcc";
+    }
+    function selP() {
+      var elems = document.getElementsByTagName("p");
+      for (elem of elems) elem.style.backgroundColor = "#ccf";
+    }
+    function selN1() {
+      var elems = document.getElementsByName("n1");
+      for (elem of elems) elem.style.backgroundColor = "#bef";
+    }
+    function clr() {
+      var elems = document.querySelectorAll("div,p");
+      for (elem of elems) elem.style.backgroundColor = "#eee";
+    }
+  </script>
+</html>
