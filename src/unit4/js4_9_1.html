@@ -1,0 +1,61 @@
+<!-- Управление ссылками: объекты Link и Links
+Задача: Реализовать смену стилей страницы при помощи ​воздействия на ссылку <link>, 
+подключающую стилевой​ Файл и собрать сведения обо всех ссылках, созданных ​
+тегом <a>, находящихся в документе  ​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+    <!-- В заголовочной части документа при помощи ссылки <link rel=.../> подключается первый стилевой файл -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- В теле документа оформляется список с несколькими ссылками на html-файлы предыдущих практик -->
+    <ul>
+      <li>
+        <a href="js4_8_1.html">js4_8_1 Поиск элементов</a>
+      </li>
+      <li>
+        <a href="js4_7_2.html">js4_7_2 Изменение дерева DOM</a>
+      </li>
+      <li>
+        <a href="js4_6_5.html">js4_6_5 Модель событий DOM: Drag-and-Drop</a>
+      </li>
+      <li>
+        <a href="js4_4_3.html">js4_4_3 Представление HTML-документа в виде дерева​</a>
+      </li>
+    </ul>
+    <!-- Кнопка, обрабатывающая ссылки типа <a> -->
+    <input type="button" value="Get links" onclick="getLinks()" />
+    <br />
+    Apply new style:<br />
+    <!-- Радиокнопки, меняющие стили путем манипуляций со ссылкой на файлы стилевых ресурсов (<link>) 
+    вызывают функцию changeStyle и передают в качестве аргумента номер стилевого файла css 1 или 2-->
+    <input type="radio" name="styler" onclick="changeStyle(1)" /> style1
+    <br />
+    <input type="radio" name="styler" onclick="changeStyle(2)" /> style2
+    <br />
+    <script>
+      // Функция собирает информацию о ссылках-якорях  
+      function getLinks() {
+        var str = "";
+        var links = document.links;
+        // Циклический обход коллекции «document.links», на каждой итерации которого к строке добавляется информация о тексте ссылки (link.innerText) и ее адресе (link.href)
+        for (link of links) str += link.innerText + "(" + link.href + ")\n";
+        alert(str);
+      }
+      // Функция изменяет стиль документа, аргумент - номер стилевого файла: 1 или 2
+      function changeStyle(num) {
+        var styleLink = document.getElementsByTagName("LINK")[0]; // поиск соответствующей ссылки 
+        document.head.removeChild(styleLink); // удаление из дочерних элементов
+        styleLink = document.createElement("LINK"); // создание нового объекта-ссылки
+        styleLink.href = "style" + num + ".css"; // указывается атрибут адреса
+        styleLink.rel = "stylesheet"; // указать тип ссылки
+        document.head.appendChild(styleLink); 
+      }
+    </script>
+  </body>
+</html>
