@@ -1,0 +1,41 @@
+<!-- Управление выделением и текстовым диапазоном: ​объекты Range, Selection и TextRange
+Задача: создать код, позволяющий обрабатывать ​события выделения текста на странице​​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+  </head>
+  <!-- Для того чтобы иметь возможность реагировать на нажатия клавиш клавиатуры, 
+    при объявлении тела документа указан обработчик соответствующего события -->
+  <body onkeypress="keyHandler(event)">
+    <h1>Text selection demo</h1>
+    <p>
+      If you find some mistakes on pagge<br />
+      <i>selectt them and press ctrl-Enter</i>
+    </p>
+    <p id="out"></p>
+    <script>
+      // В скриптовой части документа обработчик keyHandler описан в виде одноименной функции  
+      function keyHandler(e) {
+        // Проверка нажатия клавиши ctrl (e.ctrl == true). 
+        // Поскольку разные браузеры хранят название клавиши в разных полях, проверка проводится как по свойству e.key, так и по e.code
+        if (e.ctrlKey && (e.key == "Enter" || e.code == "Enter")) {
+          var sel = document.getSelection(); // Выделение через метод getSelection()
+          // Данные о маркерах начала и конца выделения, а также их смещениях собираются в одну строку-сообщение msg
+          var msg = "";
+          msg += "Selection starts at " + sel.anchorOffset + "symbol of node <br>";
+          msg += "<b>" + sel.anchorNode.data + "</b><br>";
+          msg += "Selection ends at " + sel.focusOffset + "symbol of node <br>";
+          msg += "<b>" + sel.focusNode.data + "</b><br>";
+          // Cам текст выделения можно получить при помощи вызова метода toString()
+          msg += "selected string is: <b>" + sel.toString() + "</b>";
+          // Cформированное сообщение помещается в абзац <p id="out"> </p>
+          out.innerHTML = msg;
+        }
+      }
+    </script>
+  </body>
+</html>
