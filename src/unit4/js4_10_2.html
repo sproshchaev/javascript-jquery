@@ -1,0 +1,63 @@
+<!-- Управление выделением и текстовым диапазоном: ​объекты Range, Selection и TextRange
+Задача: Имитировать процесс выделения текста​ пользователем в html-странице​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+  </head>
+  <body>
+    <!-- Основу тела документа представляет собой фраза «Mark selection ranges by checking boxes between the words»
+между каждым из слов которой вставлен элемент "checkbox", такие же элементы добавлены в начале и конце фразы -->
+    <input type="checkbox" />
+    Mark <input type="checkbox" /> 
+    selection <input type="checkbox" /> 
+    ranges <input type="checkbox" /> 
+    by <input type="checkbox" /> 
+    checking <input type="checkbox" />
+    boxes <input type="checkbox" /> 
+    between <input type="checkbox" /> 
+    the <input type="checkbox" />
+    words <input type="checkbox" /> <br />
+    <!-- Кнопка, обрабатывающая результат выделения текста -->
+    <input type="button" value="Done" onclick="makeSelection()"/>
+    <p id="out"></p>
+    <script>
+      /* Обработчик события нажатия кнопки makeSelection() */ 
+      function makeSelection() {
+        
+        /* 1) Выполнятся поиск элементов при помощи метода querySelectorAll. CSS селектор «[type='checkbox']:checked» определяет 
+           DOM элементы с атрибутом «type», имеющим значение 'checkbox' и реализующим псевдокласс :checked, т.е. отмеченные элементы, расставленные между словами */
+        var checkedBoxes = document.querySelectorAll("[type='checkbox']:checked");
+        
+        /* 2) Проверка размера коллекции, полученной как результат поиска. Если он не равен двум, формируем сообщение о необходимости двух маркеров
+           и прекращаем работу функции */
+        if (checkedBoxes.length != 2) {
+          out.innerHTML = "You should check exactly 2 boxes: start and finish ofselection";
+          return;
+        }
+        
+        /* Объект типа Range создается при помощи метода createRange() - создается пустой объект */
+        var range = document.createRange();
+        
+        /* В объекте range создаем маркеры начала и конца выделения: В рамках нашей задачи выделение должно начинать сразу после 
+           первого отмеченного элемента (checkedBoxes[0]) и заканчиваться непосредственно перед вторым отмеченным элементом (checkedBoxes[1]) */
+        range.setStartAfter(checkedBoxes[0]); // setStartAfter(elem) - устанавливает маркер начала после элемента «elem»
+        range.setEndBefore(checkedBoxes[1]);  // setEndBefore(elem) - Устанавливает маркер конца перед элементом «elem»
+        
+        /* Для реализации эффекта выделения используем стилевое оформление — цвет фона. Создадим новый элемент «span», 
+        не влияющий на сборку и размещение html-элементов, и поместим в него наш выделенный диапазон */ 
+        var span = document.createElement("SPAN");
+        span.style.backgroundColor = "aqua";
+        
+        /* Для того чтобы поместить выделенный диапазон в новый созданный элемент существует специальный метод объекта Range — surroundContents */
+        range.surroundContents(span);
+        
+        /* Выводим текст выделения в отдельный абзац, используя метод .toString() */
+        out.innerHTML = "Selected text:<br>" + range.toString();
+      }
+    </script>
+  </body>
+</html>
