@@ -1,0 +1,68 @@
+<!-- Управление выделением и текстовым диапазоном: ​объекты Range, Selection и TextRange
+Задача: Создать код, добавляющий заметку ​об авторских правах к копируемому тексту​​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 4</title>
+    <style>
+      #copyContainer {
+        position: absolute;
+        left: -1000px;
+      }
+      textarea {
+        height: 100px;
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Основа страницы - фрагмент текста, предназначенный для выделения и копирования, 
+        и также блок <textarea>, в который можно вставить скопированный фрагмент -->
+    Select any part of this page and copy it.<br />
+    Paste it in any other program or try to paste here:
+    <br />
+    <textarea></textarea>
+    <!-- Cоздается блок «<div id="copyContainer"></div>» в свойствах которого задается отрицательный отступ «left:-1000px», 
+        выводящий его за пределы области видимости. Скрывать блок, применяя стилевой атрибут «display:none», нельзя — в выделении не учитываются
+        скрытые элементы. В нашем случае блок не скрыт, а выведен за пределы видимой части страницы -->
+    <div id="copyContainer"></div>
+    <script>
+      document.addEventListener("copy", copyHandler);
+      
+      /* Глобальная переменная хранит объект-выделения типа Range */
+      var storedRange = document.createRange();
+      
+      /* Функция-обработчик события copy */
+      function copyHandler() {
+        var sel = document.getSelection(); // получаем текущее состояние выделения
+        
+        /* Переносим данные о маркерах начала и конца выделения в переменную «storedRange» */
+        storedRange.setStart(sel.anchorNode, sel.anchorOffset);
+        storedRange.setEnd(sel.focusNode, sel.focusOffset);
+        
+        /* Получаем текстовое представление выделения, добавляем к нему авторскую заметку «(Copied from js4_20.html)» 
+        и помещаем результат в блок «copyContainer» */
+        var txt = sel.toString() + "(Copied from js4_10_3.html)";
+        copyContainer.innerHTML = txt;
+        
+        /* Перемещаем выделение на этот блок */
+        sel.selectAllChildren(copyContainer);
+        
+        /* Отложенный запуск функции - функция задается непосредственно в команде setTimeout */
+        setTimeout(function () {
+          var sel = document.getSelection();
+        
+          /* Функция, она запустится после того, как закончит работу обработчик, и в ней не будет доступа к переменной sel, 
+             описанной в уже завершенной функции-обработчике, поэтому в теле функции заново получаем объект-выделение, 
+             сбрасываем данные о текущих маркерах и устанавливаем их из сохраненного объекта storedRange */
+          sel.removeAllRanges();
+          sel.addRange(storedRange);
+
+        }, 100); // время отложенного запуска — 100 миллисекунд
+      }
+    </script>
+  </body>
+</html>
