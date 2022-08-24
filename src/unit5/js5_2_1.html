@@ -1,0 +1,44 @@
+<!-- Элементы формы
+Задача: Cоздать страницу, добавляющую новый ​контакт в телефонную книгу, 
+содержащую инструменты​ для ввода имени абонента и номеров телефонов, 
+​с указанием их типов​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 5</title>
+    <style>
+      body {
+        font-family: "Courier New", Courier, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 1. Если в браузере нажать F12 и ввести:
+         1) f=document.forms[0] - сохранить форму в переменную f
+         2) f.elements - получим значение 6: 5 input и 1 select
+         3) f.children - получим значение 11: включая разметочные элементы b и br
+
+         2. Кнопка Save (элемент submit, автоматически отправляющий форму) отправляет форму. 
+         При нажатии на нее в адресной строке браузера появляются данные, отделенные от адреса знаком вопроса
+         "http://127.0.0.1:5500/src/unit5/js5_2_1.html?name=Ivan+Ivanov&name=Save&phone=%2B71234567890&type=1" -->
+    <h2>Add new contact</h2>
+    <form method="GET">
+      <b>Name</b><input type="text" placeholder="Enter name" name="name"/><br/><br/>
+      <input type="submit" value="Save" name="name"/>
+      <input type="button" value="One more phone" onclick="add_click()" style="margin-left: 50px" name="name"/><br/><br/>
+      hone number
+      <input type="text" name="phone" id="ph" placeholder="Enter phone number"/>
+      P hone type
+      <select name="type">
+        <option value="1" selected>Cellular</option>
+        <option value="2">Home</option>
+        <option value="3">Work</option>
+      </select>
+      P riority <input type="radio" n ame="main" value="1" checked/>
+    </form>
+    <script></script>
+  </body>
+</html>
