@@ -1,0 +1,59 @@
+<!-- Элементы формы
+Задача: ​Реализовать форму авторизации ​пользователя​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 5</title>
+    <!-- Через #Имя_формы и #Имя_текстового_поля определим стиль, 
+        .rounded - стилевой класс, отвечающий за скругленную форму элементов  
+        #enter - стиль для выделения кнопки отправки зеленым цветом, с выравниванием по центру -->
+    <style>
+      #loginForm {
+        background-color: #5599ee;
+        display: block;
+        height: 160px;
+        padding: 20px;
+        width: 400px;
+      }
+      #formText {
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        float: left;
+        width: 200px;
+        height: 200px;
+      }
+      .rounded {
+        border-radius: 15px;
+        border-width: 0;
+        display: block;
+        height: 30px;
+        margin: 10px 0;
+        padding: 0;
+        width: 170px;
+      }
+      #enter {
+        background-color: green;
+        color: white;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="GET" action="" id="loginForm">
+      <div id="formText">LoginForm</div>
+      <select class="rounded" name="city">
+        <option value="Kiev">Kiev</option>
+        <option value="Nikolaev">Nikolaev</option>
+        <option value="Odessa">Odessa</option>
+        <option value="" disabled selected hidden>City</option>
+      </select>
+      <input type="text" name="login" class="rounded" placeholder=" login" />
+      <input type="password" name="password" class="rounded" placeholder=" password"/>
+      <input type="submit" id="enter" class="rounded" value="ENTER" />
+    </form>
+  </body>
+</html>
