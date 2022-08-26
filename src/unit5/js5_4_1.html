@@ -1,0 +1,65 @@
+<!-- Программирование элементов формы
+Задача: ​Реализовать телефонную книгу на странице, провести анализ коллекций:
+elements, children, childNodes -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 5</title>
+  </head>
+  <body>
+    <form method="GET">
+      <b>Name</b>
+      <input type="text" placeholder=" Enter name" name="name" /><br /><br />
+      <input type="submit" value="Save" />
+      <input type="button" value="One more phone" onclick="add_click()" style="margin-left: 50px"/>
+      <br /><br />
+      Phone number
+      <input type="text" name="phone" id="ph" placeholder="Enter phone number"/>
+      Phone type
+      <select name="type">
+        <option value="1" selected>Cellular</option>
+        <option value="2">Home</option>
+        <option value="3">Work</option>
+      </select>
+      Priority <input type="radio" name="main" v alue="1" checked />
+    </form>
+    <button onclick="showElements()">Elements</button>
+    <button onclick="showChildren()">Children</button>
+    <button onclick="showNodes()">Nodes</button>
+    <p id="out"></p>
+    <script>
+      /* Функция запрашивает коллекцию элементов первой формы документа (document.forms[0].elements), 
+      получает доступ к абзацу, предназначенному для вывода информации (p = document.getElementById("out")),
+      после чего проходит циклом по коллекции и выводит на страницу данные об имени тега (tagName), программном
+      имени (name) и значении (value) каждого элемента */  
+      function showElements() {
+        var e = document.forms[0].elements; 
+        p = document.getElementById("out");
+        p.innerHTML = "";
+        for (var i = 0; i < e.length; i++) {
+          p.innerHTML += e[i].tagName + " – " + e[i].name + " – " + e[i].value + "<br>";
+        }
+      }
+      /* Функция анализируеет коллекциию children */
+      function showChildren() {
+        var c = document.forms[0].children;
+        p = document.getElementById("out");
+        p.innerHTML = "";
+        for (var i = 0; i < c.length; i++) {
+          p.innerHTML += i + 1 + ". " + c[i].tagName + "<br>";
+        }
+      }
+      /*Функция анализируеет коллекциию childNodes */ 
+      function showNodes() {
+        var n = document.forms[0].childNodes;
+        p = document.getElementById("out");
+        for (var i = 0; i < n.length; i++) {
+          p.innerHTML += i + 1 + ". " + n[i].nodeName + "<br>";
+        }
+      }
+    </script>
+  </body>
+</html>
