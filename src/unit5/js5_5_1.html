@@ -1,0 +1,78 @@
+<!-- Добавление элементов
+Задача: ​Реализовать функциональность добавления ​нового поля для ввода дополнительного номера телефона ​
+по нажатию кнопки «Добавить номер» -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 5</title>
+    <style>
+      body {
+        font-family: "Courier New", Courier, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Add new contact</h2>
+    <form method="GET">
+      <b>Name</b>
+      <input type="text" placeholder="Enter name" name="name" /><br /><br />
+      <input type="submit" value="Save" name="name" />
+      <input type="button" value="One more phone" onclick="add_click()" style="margin-left: 50px" name="name"/>
+      <br /><br />
+      hone number
+      <input type="text" name="phone" id="ph" placeholder="Enter phone number"/>
+      Phone type
+      <select name="type">
+        <option value="1" selected>Cellular</option>
+        <option value="2">Home</option>
+        <option value="3">Work</option>
+      </select>
+      Priority <input type="radio" name="main" value="1" checked />
+    </form>
+    <script>
+      /* обработчик события нажатия кнопки One more phone */
+      function add_click() {
+        /* Глобальная переменная-счетчик phoneCounter, значение которой будет риписываться к именам полей */
+        if (typeof phoneCounter == 'undefined') phoneCounter = 1; // В момент первого запуска функции эта переменная должна быть инициализирована
+        phoneCounter++;
+        /* В переменной f сохранен первый элемент коллекции форм документа, то есть наша основная форма, к которой мы будем добавлять элементы */
+        var f = document.forms[0];
+        /* Функция document.createElement создает элемент по имени тега - разрыв строки через вызов document.createElement('br'), */
+        var b = document.createElement('br');
+        /* Функции только создают объекты заданного типа, но не включают их в структуру документа. Для этих целей необходимо воспользоваться 
+           методом appendChild того объекта, к которому элементы добавляются. В нашем случае – формы, сохраненной в переменной f */
+        f.appendChild(b);
+        /* добавление надписи Phone number */ 
+        var t = document.createTextNode('Phone number ');
+        f.appendChild(t);
+        /* Добавление поля ввода нового номера: новому созданному элементу типа input необходимо явно указать тип 'text', и сформировать имя 
+           с учетом переменной-счетчика и, по аналогии с уже существующим полем, добавить подсказку (placeholder) Enter phone number */
+        var phoneInput = document.
+        createElement('input');
+        phoneInput.type = 'text';
+        phoneInput.name = 'phone' + phoneCounter;
+        phoneInput.placeholder = 'Enter phone number';
+        f.appendChild(phoneInput);
+        /* Аналогично добавление надписи Phone type */
+        var t2 = document.createTextNode(' Phone type ');
+        f.appendChild(t2);
+        var selector = f.elements['type']; // сохранение в переменную selector элемента коллекции с именем 'type'
+        var newSelector = selector.cloneNode(true); // вызов метода клонирования для создания новой переменной (true - скопировать все содержимое элемента)
+        console.log(newSelector);
+        newSelector.name = 'type' + phoneCounter; // изменить имя 
+        f.appendChild(newSelector);               // добавить к форме
+        /* Аналогично добавление надписи Priority */
+        var t3 = document.createTextNode(' Priority ');
+        f.appendChild(t3);
+        var mainRadio = document.createElement('input');
+        mainRadio.type = 'radio';
+        mainRadio.name = 'main';
+        mainRadio.value = phoneCounter;
+        f.appendChild(mainRadio);
+      }
+    </script>
+  </body>
+</html>
