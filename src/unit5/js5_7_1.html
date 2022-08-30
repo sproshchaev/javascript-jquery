@@ -1,0 +1,74 @@
+<!-- Удаление элементов
+Задача: Реализовать функциональность добавления ​нового поля для ввода дополнительного номера телефона ​
+по нажатию кнопки «Добавить номер» с возможностью ​удаления записей, которые были добавлены в процессе ​
+работы (все, кроме первой)​​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 5</title>
+    <style>
+      body {
+        font-family: "Courier New", Courier, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Add new contact</h2>
+    <form method="GET">
+      <b>Name </b><input type="text" placeholder=" Enter name" name="name"/>
+      <div style="margin: 10px 0">
+        Phone number
+        <input type="text" name="phone" id="ph" placeholder="Enter phone number"/>
+        Phone type
+        <select name="type">
+          <option value="1" selected>Cellular</option>
+          <option value="2">Home</option>
+          <option value="3">Work</option>
+        </select>
+        Priority <input type="radio" name="main" value="1" checked/>
+      </div>
+      <input type="button" value="One more phone" onclick="add_click()"/>
+      <input type="submit" value="Save" style="margin-left: 50px" />
+    </form>
+    <script>
+      /* Обработчик события нажатия кнопки One more phone */
+      function add_click() {
+        if (typeof phoneCounter == "undefined") phoneCounter = 1;
+        phoneCounter++;
+        var f = document.forms[0];
+        var line = f.children[2];
+        var newLine = line.cloneNode(true);
+        newLine.children[0].name = "phone" + phoneCounter;
+        newLine.children[0].value = "";
+        newLine.children[1].name = "type" + phoneCounter;
+        newLine.children[2].checked = false;
+
+        /* Добавление кнопки удаления новой строки */
+        var removeButton = document.createElement('input'); // создается элемент типа input, устанавливается его тип button и надпись на кнопке Remove
+        removeButton.type = 'button';
+        removeButton.value = 'Remove';
+        removeButton.addEventListener('click',rem_click); // обработчик события нажатия кнопки (click) связан с функцией rem_click через метод addEventListener
+        newLine.appendChild(removeButton); // добавляем кнопку в клонированный блок newLine
+
+        f.insertBefore(newLine, f.children[phoneCounter + 1]); 
+      }
+      /* Функция rem_click отвечает за нажатие кнопки и удаляет строку 
+         Так как для всех кнопок используется одна и та же функция, различать их будем при помощи источника сообщения - прототип 
+         функции-обработчика должен предусматривать аргумент: rem_click(event)
+      */ 
+      function rem_click(event) {
+        var line = event.target.closest('div'); // При появлении события нажатия кнопки будет вызван его обработчик и передан объект события event. 
+                                                // В этом событии источник полученного сообщения хранится в поле event.target. 
+                                                // Эта конструкция даст возможность определить кнопку, которая была нажата
+                                                // Через .closest определяем блок-«строку» в котором была нажата кнопка
+        var f = document.forms[0]; 
+        f.removeChild(line);
+        phoneCounter--; // уменьшить счетчик блоков после удаления
+      }
+
+    </script>
+  </body>
+</html>
