@@ -1,0 +1,60 @@
+<!-- Клонирование и вставка
+Задача: ​Реализовать функциональность добавления ​нового поля для ввода дополнительного номера телефона ​
+по нажатию кнопки «Добавить номер» используя метод клонирования -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 5</title>
+    <style>
+      body {
+        font-family: "Courier New", Courier, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Чтобы воспользоваться клонированием, элементы, которые добавляются, надо поместить в общий контейнер <div> -->
+    <h2>Add new contact</h2>
+    <form method="GET">
+      <b>Name </b><input type="text" placeholder=" Enter name" name="name"/>
+      <div style="margin: 10px 0">
+        Phone number
+        <input type="text" name="phone" id="ph" placeholder="Enter phone number"/>
+        Phone type
+        <select name="type">
+          <option value="1" selected>Cellular</option>
+          <option value="2">Home</option>
+          <option value="3">Work</option>
+        </select>
+        Priority <input type="radio" name="main" value="1" checked/>
+      </div>
+      <input type="button" value="One more phone" onclick="add_click()"/>
+      <input type="submit" value="Save" style="margin-left: 50px" />
+    </form>
+    <script>
+      /* Обработчик события нажатия кнопки One more phone */
+      function add_click() {
+        if (typeof phoneCounter == "undefined") phoneCounter = 1;
+        phoneCounter++;
+        var f = document.forms[0];
+        /* Получаем доступ к блоку <div>, отвечающему за «строку» ввода номера. Блок находится на третьей позиции коллекции children формы, 
+            соответственно, получить к нему доступ можно при помощи строки var line = f.children[2] */
+        var line = f.children[2];
+        /* Cоздаем клон этого блока через инструкцию (var newLine = line.cloneNode(true)) */
+        var newLine = line.cloneNode(true);
+        /* После клонирования заменяем имена полей ввода с учетом счетчика, а также сбрасываем значения поля ввода имени */
+        newLine.children[0].name = "phone" + phoneCounter;
+        newLine.children[0].value = "";
+        newLine.children[1].name = "type" + phoneCounter;
+        newLine.children[2].checked = false;
+        /* Добавляем новый элемент к форме через метод insertBefore:
+           - метод appendChild добавляет элемент в конец коллекции
+           - метод insertBefore может вставить элемент в любое место, первый аргумент - новый элемент, который добавляется к форме, 
+           второй – элемент, перед которым нужно вставить новый. */
+        f.insertBefore(newLine, f.children[phoneCounter + 1]); // счетчик phoneCounter позволяет определить место, куда вставляем новую строку
+      }
+    </script>
+  </body>
+</html>
