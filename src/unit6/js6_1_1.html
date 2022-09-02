@@ -1,0 +1,109 @@
+<!-- Проверка достоверности данных формы
+Задача: ​Создать форму-анкету, предназначенную​ для добавления нового 
+пользователя в систему с вводом​ имени, логина/пароля, телефона, почты​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 6</title>
+    <style>
+      #regForm b {
+        display: inline-block;
+        padding-top: 5px;
+        width: 100px;
+      }
+      #regForm input[type="submit"] {
+        margin: 15px 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- для всех элементов формы (кроме кнопки submit) указан атрибут «required» 
+        - браузер будет автоматически проверять наличие данных в этих полях 
+        Для проверки достоверности данных используется перехват события отправки формы «onsubmit» -->
+    <form method="GET" id="regForm" onsubmit="return checkForm()">
+      <b>First name:</b>
+      <input type="text" id="name1" name="name1" required /><br />
+      <b>Last name:</b>
+      <input type="text" id="name2" name="name2" required /><br />
+      <b>Login:</b>
+      <input type="text" id="login" name="login" required /><br />
+      <b>Password:</b>
+      <input type="password" id="pas1" name="pass" required /><br />
+      <b>Confirm password:</b>
+      <input type="password" id="pas2" required /><br />
+      <b>Email:</b>
+      <input type="email" id="email" name="email" required /><br />
+      <b>Phone number:</b>
+      <input type="phone" id="phone" name="phone" required /><br />
+      <b>Code:</b>
+      <input type="number" id="code" name="code" required /><br />
+      <b></b>
+      <label>
+        <input type="checkbox" name="accept" required />
+        I accept the rules </label
+      ><br />
+      <input type="submit" value="Register" />
+    </form>
+    <script>
+      /* Обработка события - проверка достоверности данных, введенных в полях формы */
+      function checkForm() {
+        /* Правило 1. В имени (и фамилии) могут быть только буквы, первая буква большая, cоставные имена нужно проверять каждое отдельно по шаблону «Большая буква» далее «маленькие» потом «тире» и снова «Большая»...
+              Причем составной части может и не быть, а может быть и большее количество составных частей  */
+        var n1 = document.getElementById("name1").value;
+        var t1 = /^[A-Z][a-z]*(-[A-Z][a-z]*)*$/;
+        if (!t1.test(n1)) {
+          alert("First name is incorrect");
+          return false;
+        }
+        var n2 = document.getElementById("name2").value;
+        if (!t1.test(n2)) {
+          alert("Last name is incorrect");
+          return false;
+        }
+        var p1 = document.getElementById("pas1").value;
+        if (!/\d/.test(p1)) {
+          alert("Password has no digit");
+          return false;
+        }
+        if (!/[A-Z]/.test(p1)) {
+          alert("Password has no big letters");
+          return false;
+        }
+        if (!/[a-z]/.test(p1)) {
+          alert("Password has no small letters");
+          return false;
+        }
+        var p2 = document.getElementById("pas2").value;
+        if (p1 != p2) {
+          alert("Passwords mismatch");
+          return false;
+        }
+        var eMail = document.getElementById("email").value;
+        var te = /^\w+([-+.’]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        if (!te.test(eMail)) {
+          alert("e-Mail is incorrect");
+          return false;
+        }
+        var phone = document.getElementById("phone").value;
+        if (!/^\+?\d{6,12}$/.test(phone)) {
+          alert("Phone is incorrect");
+          return false;
+        }
+        var cod = document.getElementById("code").value;
+        if (/\D/.test(cod)) {
+          alert("Code is incorrect");
+          return false;
+        }
+        var agree = document.getElementById("accept").value;
+        if (agree != "on") {
+          alert("You should accept rules");
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </body>
+</html>
