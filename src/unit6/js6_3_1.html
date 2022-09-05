@@ -1,0 +1,51 @@
+<!-- Создание, использование и удаление Cookie
+Задача: ​Cоздадть простейшую систему, имитирующую ​авторизацию пользователей 
+​Для выполнения упражнения по работе с Cookie ​необходимо либо создать настоящий домен, 
+​либо воспользоваться онлайн HTML — редактором Tryit Editor ​
+на портале w3schools.com https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 6</title>
+  </head>
+  <!-- При объявлении тела документа <body onload = ”checkReg()”> указываем, что к событию загрузки документа «onload» подключена функция «checkReg» -->
+  <body onload="checkReg()">
+    <!-- Блок div служит для формирования содержания страницы -->
+    <div id="regDiv"></div>
+    <script>
+      /* Функция checkReg() */
+      function checkReg() {
+        /* Преобразование строки Cookie в объект */
+        var x = document.cookie;
+        var rd = document.getElementById("regDiv");
+        var s = x.split("; ");
+        var cookieObject = {};
+        var c;
+        for (var i = 0; i < s.length; i++) {
+          c = s[i].split("=");
+          cookieObject[c[0]] = c[1];
+        }
+        /* Проверка, установлено ли значение для имени «register» инструкцией if('register' in cookieObject) */
+        if ("register" in cookieObject) {
+          rd.innerHTML = "Hello, " + cookieObject["register"]; // вывод приветствия
+        } else {
+          rd.innerHTML =
+            "Name: <input type='text' id='name'/> <input type='button' value='Register' onclick='regClick()'/>"; // формируем поле ввода и кнопку авторизации, для которой указываем новую функцию «regClick»
+        }
+      }
+      /* Обработчик регистрации нового пользователя */
+      function regClick() {
+        var inputName = document.getElementById("name"); // получаем введенное имя в поле «name»
+        var name = inputName.value;
+        var expDate = new Date(); // создаем объект для работы с датой и временем
+        expDate.setTime(new Date().getTime() + 60 * 1000); // получаем текущую дату и время добавляем к ней значение «60*1000» = 1 минута
+        document.cookie =
+          "register=" + name + ";expires=" + expDate.toGMTString() + ";path=/"; // устанавливаем новое значение для Cookie
+        checkReg(); // вызываем первую функцию «checkReg» для перехода в авторизированный режим (правильный вариант — перезагрузить страницу, вызвав метод «location.reload()» вместо вызова функции «checkReg», но в данном HTML редакторе это может не сработать, в силу внутренних ограничений)
+      }
+    </script>
+  </body>
+</html>
