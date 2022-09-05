@@ -1,0 +1,39 @@
+<!-- Создание, использование и удаление Cookie
+Задача: Создать Cookie и вывести значения всех субстрок
+​Для выполнения упражнения по работе с Cookie ​необходимо либо создать настоящий домен, 
+​либо воспользоваться онлайн HTML — редактором Tryit Editor ​на портале w3schools.com https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 6</title>
+  </head>
+  <body>
+    <!-- Инструкция <p id="out"></p> создает пустой абзац (параграф), предназначенный для дальнейшего заполнения из скриптовой части (для вывода информации)  -->
+    <p id="out"></p>
+    <script>
+      /* Устанавливаются два значения для двух новых Cookie: «registered=User», и «organization=Step» c одинаковым сроком и областью действия */   
+      document.cookie = "registered=User; expires=Mon, 05 Sep 2022 23:59:59 GMT; path=/";
+      document.cookie = "organization=Step; expires=Mon, 05 Sep 2022 23:59:59 GMT; path=/";
+      /* Вывод в абзац «out» значение строки «document.cookie» */
+      window.out.innerHTML = document.cookie;
+      /* Для обработки строки Cookie напишем команды, которые преобразуют ее в объект */
+      var x = document.cookie; // получаем данные о Cookie и сохраняем их в переменной х
+      var s = x.split("; "); // разбиваем строку методом «split» по разделителю «; » (+ пробел) и получаем массив «s» из строк в виде «имя=значение».
+      var cookieObject = {}; 
+      var c;
+      /* Проходим циклом по полученному массиву и разбиваем каждую его запись по разделительному символу «=», сохраняя результат в переменной «с» (c = s[i].split('=')).
+         Полученные данные об имени и значении Cookie сохраняем в объекте «cookieObject» как пару «ключ-значение».
+         Ключом выступает имя Cookie, сохраненное в первой части разделенной строки «c[0]», значением — вторая часть «c[1]» (cookieObject[c[0]] = c[1]). */
+      for (var i = 0; i < s.length; i++) {
+        c = s[i].split("=");
+        cookieObject[c[0]] = c[1];
+      }
+      /* Выведем из объекта «cookieObject» полученные данные отдельно, по одной записи в строке */ 
+      for (var co in cookieObject)
+        window.out.innerHTML += co + " = " + cookieObject[co] + "<br/>";
+    </script>
+  </body>
+</html>
