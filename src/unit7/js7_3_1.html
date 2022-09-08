@@ -1,0 +1,26 @@
+<!-- Объект JSON Функция parse()
+Задача: Десериализировать JSON строку ​и вернуть объект JavaScript​​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 7</title>
+  </head>
+  <body>
+    <script>
+      /* Переменная personStr, содержащая строку JSON */
+      let personStr = '{"firstName": "John", '
+      + '"lastName": "Doe", '
+      + '"age": "25", '
+      + '"isStudent": true, ' 
+      + '"сontactInfo": {"phone": "123-456-78-90", "email": "jdoe@gmail.com"},' 
+      + '"disciplines" : ["Programming", "Machine engineering", "English"]}';
+      /* Передаем переменную personStr в функцию JSON.parse(), которая создает и возвращает объект с данными, путем парсинга переданной строки */
+      let person = JSON.parse(personStr);
+      alert(person.firstName);
+      alert(person.сontactInfo.phone);
+    </script>
+  </body>
+</html>
