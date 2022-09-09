@@ -1,0 +1,51 @@
+<!-- Пользовательский метод toJSON()​
+Задача: Через использование метода toJSON() серилизировать​ поля объекта со значением undefined​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 7</title>
+  </head>
+  <body>
+    <script>
+      /* В объекте car присутствует вложенный объект model, который состоит из названия модели и системы автопилот, значение которого undefined */
+      let model = {
+        name: "BMW",
+        autopilot: undefined,
+      };
+      let car = {
+        color: "Black",
+        date: new Date(2022, 9, 9),
+        model,
+      };
+      /* При формировании строки JSON не выводиться значение опции autopilot, так как его значение undefined */
+      alert(JSON.stringify(car, null, 2));
+
+      /* При определении метода toJSON() зададим строковое представление свойствам со значением undefined */
+      let model2 = {
+        name: "BMW",
+        autopilot: undefined,
+        undefined,
+        toJSON() {
+          let jsonStr = '{"name": "' + this.name + '","autopilot": ';
+          if (this.autopilot === undefined) {
+            jsonStr += '"Not"}';
+          } else {
+            jsonStr += this.autopilot + "}";
+          }
+          return jsonStr;
+        },
+      };
+      let car2 = {
+        color: "Black",
+        date: new Date(2022, 9, 9),
+        model2,
+      };
+      /* При формировании строки JSON теперь уже выводится значение опции autopilot, так как мы использовали пользовательский метод,
+      определивший содержание поля undefined при его серилизации */
+      alert(JSON.stringify(car2, null, 2));
+    </script>
+  </body>
+</html>
