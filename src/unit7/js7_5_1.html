@@ -1,0 +1,36 @@
+<!-- Ajax. Объект XMLHttpRequest
+Задача: ​Сформировать запрос XMLHttpRequest ​и обработать ответ сервера​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 7</title>
+  </head>
+  <body>
+    <script>
+      /* Для начала проверяем, поддерживается ли объект XMLHttpRequest браузером, если да, создаем его, если нет, 
+      то создаем объект ActiveXObject */  
+      let request;
+      if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+      } else {
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      /* После создания объекта нужно проинициализировать запрос с помощью метода open() в который передается строка 
+      со значением метода отправки и путь к файлу, содержащему данные, которые нужно получить. 
+      Запрос отправляется на локальный сервер, это видно по пути к файлу */ 
+      request.open("GET", "text.txt");
+      /* Подписка на событие onreadystatechange через вызов анонимной функции */
+      request.onreadystatechange = function () {
+        console.log("readyState = " + request.readyState); // каждый раз, когда будет изменятся свойство readyState, будет выводится текущее состояние readyState в консоль
+        /*  */
+        if ((request.readyState === 4) && (request.status == 200) ) {
+          alert(request.response);
+        }
+      };
+      request.send();
+    </script>
+  </body>
+</html>
