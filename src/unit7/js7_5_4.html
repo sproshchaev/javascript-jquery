@@ -1,0 +1,29 @@
+<!-- Ajax. Объект XMLHttpRequest
+Задача: Сформировать запрос XMLHttpRequest и обработать ​ответ сервера, использовать ResponseXML​​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 7</title>
+  </head>
+  <body>
+    <script>
+      let request;
+      if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+      } else {
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      /* запрос к файлу person.xml */
+      request.open("GET", "person.xml");
+      request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status == 200) {
+          console.log(request.responseXML);
+        }
+      };
+      request.send();
+    </script>
+  </body>
+</html>
