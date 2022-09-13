@@ -1,0 +1,33 @@
+<!-- Пример событий XMLHttpRequest: onerror, onprogress -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 7</title>
+  </head>
+  <body>
+    <script>
+      let request;
+      if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+      } else {
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      request.open("GET", "tex.txt");
+      request.onloadend = function (event) {
+        alert("Загужено " + event.loaded);
+      };
+      request.onerror = function () {
+        alert("Ошибка");
+      };
+      request.onload = function () {
+        if (request.status === 404) {
+          alert(request.response);
+        }
+      };
+      request.send();
+    </script>
+  </body>
+</html>
