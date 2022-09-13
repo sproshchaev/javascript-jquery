@@ -1,0 +1,29 @@
+<!-- Пример запроса на удаленный сервер с погодой​ https://openweathermap.org/api -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 7</title>
+  </head>
+  <body>
+    <script>
+      let request;
+      if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+      } else {
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      /* В методе open() URL-адрес указан на удаленный сервер с погодой : «http://api.openweathermap.org/data/2.5/weather?q=Kiev... 
+      запрос содержит ключ (APPID=), необходимый для отправки запроса, его можно получить, зарегистрировавшись на сайте https://openweathermap.org */
+      request.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=Kiev&units=metric&APPID=b03a2cfad336d11bd9140ffd92074504");
+      request.onload = function () {
+        if (request.status === 200) {
+          alert(request.response);
+        }
+      };
+      request.send();
+    </script>
+  </body>
+</html>
