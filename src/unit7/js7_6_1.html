@@ -1,0 +1,55 @@
+<!-- HTTP — протокол. Метод POST​
+Задача: реализовать html форму, в которой есть ​имя пользователя, телефона и кнопка «Перезвоните​ мне»​ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 7</title>
+  </head>
+  <body>
+    <!-- html форма, в которой есть имя пользователя, его номер и кнопка отправить -->
+    <form id="form" action="">
+      <input type="text" name="name" id="name-inp" />
+      <input type="text" name="phone" id="phone-inp" />
+      <input type="submit" id="submit-btn">
+    </form>
+    <script>
+      /* Находим кнопку по id submit-btm, при нажатии на которую введенные данные должны отправиться на сервер */  
+      let subbliBtn = document.getElementById("submit-btn");
+      /* Подписываемся на событие onclick, назначая ей обработчик */
+      subbliBtn.onclick = function () {
+        let nameValue = document.getElementById("name-inp").value;
+        let phonValue = document.getElementById("phone-inp").value;
+        /* данные в строке представляются в виде пары ключ-значение, то есть сначала должно быть название параметра после это знак ‘=’ и далее значение этого параметра */
+        let data = "name=" + encodeURIComponent(nameValue) +"&phone=" + encodeURIComponent(phonValue); // 1) через encodeURIComponent происходит преобразование в строку в формате UTF-8 для исключения проблем, связанных с зарезервированными символами
+        let request;                                                                                   // 2) каждую пару параметр-значение нужно разделять знаком ‘&’ 
+        if (window.XMLHttpRequest) {
+          request = new XMLHttpRequest();
+        } else {
+          request = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        /* Cоздаем объект запроса. Так как не реализован server.php получить ответ мы не сможем */
+        request.open("POST", "server.php");
+        /* Подписываемся на onreadystatechange */
+        request.onreadystatechange = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            alert(
+              "Здравствуйте " + nameValue + "! Мы перезвоним вам через 1 минуту"
+            );
+          }
+        };
+        /* Обязательной частью POST запроса является установка заголовка Content-Type. Он необходим для того,
+           чтобы указать, с помощью какой кодировки зашифрованы данные, чтобы сервер знал, как расшифровать пришедший запрос. 
+           Для этого используется метод setRequestHeader(). В нем нужно указать название заголовка, а именно Content-Type, 
+           и его значение «application/x-www-form-urlencoded» */
+        request.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+        request.send(data);
+      };
+    </script>
+  </body>
+</html>
