@@ -1,0 +1,49 @@
+<!-- Объект FormData​
+Задача: ​реализовать html форму, в которой есть ​имя пользователя, телефона и кнопка «Перезвоните​ мне» c использованием объекта FormData -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 7</title>
+  </head>
+  <!-- html форма, в которой есть имя пользователя, его номер и кнопка отправить -->
+  <form id="form" action="">
+    <input type="text" name="name" id="name-inp" />
+    <input type="text" name="phone" id="phone-inp" />
+    <input type="submit" id="submit-btn" />
+  </form>
+  <body>
+    <script>
+      let subbliBtn = document.getElementById("submit-btn");
+      /* В обработчике события onclick сначала создается объект FormData, в его конструктор передается DOM объект формы, 
+         на основе которой и будет сгенерирована строка с данными */
+      subbliBtn.onclick = function () {
+        let form = document.getElementById("form");
+        let formData = new FormData(form);
+        /* Вызов метода append в объекте formData, который выполняет добавление дополнительного параметра, указав ключ 
+           как «date» и само значение даты, например, для того чтобы оператор знал, когда была отправлена заявка на звонок */
+        formData.append("date", new Date().toLocaleString());
+        let request;
+        if (window.XMLHttpRequest) {
+          request = new XMLHttpRequest();
+        } else {
+          request = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        request.open("POST", "server.php");
+        request.onreadystatechange = function () {
+          if (request.readyState == 4 && request.status == 200) {
+            alert(
+              "Здравствуйте " + nameValue + "! Мы перезвоним вам через 1 минуту"
+            );
+          }
+        };
+        /* При указании ‘Content-Type’ значение должно быть ‘multipart/form-data’, это нужно для того чтобы сервер правильно раскодировал данные */
+        request.setRequestHeader("Content-Type", "multipart/form-data");
+        /* В методе send() нужно передать объект formData */
+        request.send(formData);
+      };
+    </script>
+  </body>
+</html>
