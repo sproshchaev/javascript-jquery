@@ -1,0 +1,39 @@
+<!-- Использование библиотеки jQuery -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Unit 8</title>
+    <!-- Использование библиотеки jQuery в заголовочной части страницы  -->
+    <!-- Подключение jQuery из CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" >
+      /* Вариант 1 с использованием ключевого слова jQuery */
+      jQuery(document).ready(function(){
+        // Здесь пишем код
+      });
+      /* Вариант 2 с использованием замены ключевого слова значком $ */
+      $(document).ready(function(){
+        // Здесь пишем код
+      });
+      /* Вариант 3 с применением стрелочной функции */
+      $(document).ready(()=>{
+        $('.block').addClass('active');
+        // Здесь пишем код
+      });
+      /* Вариант 4 c использованием укороченного варианта */
+      $(function() {
+        $('.nav-link').addClass('active');
+        // Здесь пишем код
+      });
+      /* Вариант 5 с использованием стрелочной функции */
+      $(() => {
+        $('.block').attr('data-text', 'Test Block');
+        // Здесь пишем код
+      });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
